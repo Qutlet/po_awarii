@@ -1,0 +1,64 @@
+body{
+    line-height: 1.7;
+    color: #000000;
+    background-color: #ffffff;
+    overflow-x: hidden;
+}
+
+.logowanko {
+    display: block;
+    text-align: center;
+    font-size: xx-large;
+}
+.no-margin {
+    margin: 0px;
+}
+
+.login-input{
+    height: 50px;
+    width: 50%;
+    border-style: solid;
+    border-color: gold;
+    background: gold;
+    font-size: 20px;
+}
+
+.login-button {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: gold;
+    border: none;
+    color: black;
+    text-align: center;
+    font-size: 28px;
+    padding: 20px;
+    width: 25%;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.login-button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.login-button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.login-button:hover span {
+    padding-right: 25px;
+}
+
+.login-button:hover span:after {
+    opacity: 1;
+    right: 0;
+}
