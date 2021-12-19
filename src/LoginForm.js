@@ -2,14 +2,16 @@ import React, { Component } from 'react'
 import axios from 'axios';
 import {Link} from 'react-router-dom'
 import './LoginForm.css';
+import UserStorage from "./UserStorage";
 
 
 export class LoginForm extends Component {
     constructor(props) {
         super(props);
+        this.login = this.login.bind(this)
     }
 
-    login() {
+    async login() {
         const email = document.getElementById('logemail').value;
         const pass = document.getElementById('logpass').value;
         axios.post('http://localhost:8080/logon',{
@@ -17,6 +19,8 @@ export class LoginForm extends Component {
             password: pass
         }).then((response) => {
             console.log(response.data);
+            UserStorage.login(response.data)
+            this.props.history.push('/');
         }).catch((error) => {
             console.log(error.message)
         });
@@ -37,6 +41,11 @@ export class LoginForm extends Component {
                         <button className={'login-button'} onClick={this.login} >
                             <span>Zaloguj</span>
                         </button>
+                    </div>
+                    <div>
+                        <Link to={"/register"} className={"nav-link"}>
+                            <div className={"login-swap"}>Nie posiadam konta</div>
+                        </Link>
                     </div>
                 </div>
             </React.Fragment>

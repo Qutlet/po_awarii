@@ -1,31 +1,80 @@
 import React, {Component} from "react";
 import {Link} from 'react-router-dom';
 import styled from 'styled-components'
+import UserStorage from "./UserStorage";
 
 export default class NavigationBar extends Component{
- render() {
-     return (
-         <NavWrapper className="nav-bar">
-             <Link to= '/register'>
-                 <NavButtonRegister>
-                     Zarejestruj
-                 </NavButtonRegister>
-             </Link>
-             <Link to= '/login'>
-                 <NavButtonLogin>
-                      Zaloguj
-                 </NavButtonLogin>
-             </Link>
-         </NavWrapper>
+    constructor(props) {
+        super(props);
+    }
 
-     );
+    logout = () => {
+        UserStorage.logout()
+        this.props.history.push('/login')
+
+    }
+
+    notLogIn = () => {
+        return (
+            <NavWrapper className="nav-bar">
+                <Link to= '/register'>
+                    <NavButtonRegister>
+                        Zarejestruj
+                    </NavButtonRegister>
+                </Link>
+                <Link to= '/login'>
+                    <NavButtonLogin>
+                        Zaloguj
+                    </NavButtonLogin>
+                </Link>
+            </NavWrapper>
+
+        );
+    }
+
+    logIn = () => {
+        return (
+            <NavWrapper className="nav-bar">
+                <StyledLink to={'/malfunctions/add'}>
+                    <NavItem>Zgłoś awarie</NavItem>
+                </StyledLink>
+                <StyledLink to={'/malfunctions'}>
+                    <NavItem>Awarie</NavItem>
+                </StyledLink>
+                <StyledLink to={'/'}>
+                    <NavItem>Moje zgłoszenia</NavItem>
+                </StyledLink>
+                <StyledLink to={'/'}>
+                    <NavItem>Profil specjalisty</NavItem>
+                </StyledLink>
+                <StyledLink to={'/'}>
+                    <NavItem>Jestem specjalistą</NavItem>
+                </StyledLink>
+                <StyledLink to={'/'}>
+                    <NavItem>Konto</NavItem>
+                </StyledLink>
+                <Link to= '/login'>
+                    <NavButtonLogin onClick={this.logout}>
+                        Wyloguj
+                    </NavButtonLogin>
+                </Link>
+            </NavWrapper>
+        )
+    }
+
+    render() {
+        if (this.props.userdata.isLoggedIn()) {
+            return this.logIn()
+        } else {
+            return this.notLogIn()
+        }
  }
 }
 
 const NavItem = styled.div`
     margin-left: 30px;
-    color: white;
-
+    color: black;
+    font-size: x-large;
     &:hover{
         cursor: pointer;
         transform: scale(1.1);
