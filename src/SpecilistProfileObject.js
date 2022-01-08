@@ -1,13 +1,19 @@
-import {Component} from "react";
+import React, {Component} from "react";
 import PropTypes from 'prop-types'
 import {ProductConsumer} from "./context";
 import styled from 'styled-components';
 import {Link} from "react-router-dom";
 
-export default class MalfunctionObject extends Component {
+export default class SpecilistProfileObject extends Component {
 
     render() {
-        const {id,name,description,categories,location} = this.props.malfunctionObject;
+        const {id,firstName,lastName,categories,customProfileName,userPhoto} = this.props.specialistProfileObject;
+        let url;
+        if(userPhoto) {
+            url = "http://localhost:8080/file/download/" + userPhoto;
+        } else {
+            url = "default_profile.png"
+        }
         return (
             <ProductWrapper className="col -9 mx-auto col-md-6 col-lg-3 my-3">
                 <div className="card">
@@ -15,7 +21,7 @@ export default class MalfunctionObject extends Component {
                     <ProductConsumer>
                         {(value) => (
                             <Link to={{
-                                pathname: '/malfunction/' + id ,
+                                pathname: '/specialist/' + id ,
                                 state: {
                                     id: id
                                 }
@@ -23,17 +29,32 @@ export default class MalfunctionObject extends Component {
                                 <div className="img-container p-5">
 
                                     <div className="card-footer d-flex justify-content-between">
-                                        <h4 className="align-self-center mb-0" style={{
-                                            margin: "0px",
-                                            fontSize: "1.5em"
+                                        <div style={{display : "flex"}}>
+                                            <img src={url} alt="alternatetext"
+                                                 style={{
+                                                     borderColor: "gold",
+                                                     width: "10%",
+                                                     borderWidth: "5px",
+                                                     borderStyle: "solid"}}
+                                            />
+                                            <h4 className="align-self-center mb-0" style={{
+                                                marginLeft: "10px",
+                                                fontSize: "1.7em"
+                                            }}>
+                                                {firstName + " " + lastName + ": " + customProfileName}
+                                            </h4>
+                                        </div>
+                                        <p style={{
+                                            marginBottom: "0px",
+                                            fontSize : "smaller"
                                         }}>
-                                            {name}
-                                        </h4>
-                                        <p className="align-self-center mb-0">
-                                            {categories.join(', ')}
+                                          Specjalizaje:
                                         </p>
-                                        <p className="align-self-center mb-0">
-                                            {location}
+                                        <p className="align-self-center mb-0" style={{
+                                            marginLeft: "10px",
+                                            marginTop: "0px"
+                                        }}>
+                                            {categories.join(', ')}
                                         </p>
                                     </div>
 
@@ -48,14 +69,15 @@ export default class MalfunctionObject extends Component {
     }
 }
 
- MalfunctionObject.propTypes = {
-    malfunctionObject:PropTypes.shape({
+SpecilistProfileObject.propTypes = {
+    specialistProfileObject:PropTypes.shape({
         id:PropTypes.number,
-        name:PropTypes.string,
-        description:PropTypes.string,
+        firstName:PropTypes.string,
+        lastName:PropTypes.string,
         categories:PropTypes.array,
-        location:PropTypes.string
-        }).isRequired
+        customProfileName:PropTypes.string,
+        userPhoto:PropTypes.string
+    }).isRequired
 }
 
 

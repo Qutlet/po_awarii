@@ -21,12 +21,12 @@ export default class AddMalfunction extends Component {
     processSubmit = (obj) => {
         obj.preventDefault()
         console.log("processing...")
-        console.log(this.props.userdata.token)
+        console.log(this.props)
         axios.post('http://localhost:8080/malfunctions/create' ,{
             name: obj.target.name.value,
             description: obj.target.description.value,
             categories: this.state.cat,
-            location: obj.target.name.value,
+            location: obj.target.location.value,
             phoneNumber: obj.target.phone.value,
             email: obj.target.email.value
         },{
@@ -48,7 +48,7 @@ export default class AddMalfunction extends Component {
         obj.preventDefault()
         let cat = this.state.catTmp[this.state.catValueTmp];
         let catArray = this.state.cat;
-        if (catArray.includes(cat)){
+        if (catArray.includes(cat.name)){
             return;
         }
         catArray.push(cat.name)
@@ -148,7 +148,7 @@ export default class AddMalfunction extends Component {
                             Dodaj kategorie swojej awarii
                             <select style={this.inputStyle()} value={this.state.catValueTmp} onChange={this.processCategory}>
                                 {this.state.catTmp.map(cat =>
-                                    <option value={cat.id}>{cat.name}</option>
+                                    <option value={cat.id} key={cat.id}>{cat.name}</option>
                                 )}
                             </select>
                             <button style={this.buttonStyle()} onClick={this.addCategory}>Dodaj</button>

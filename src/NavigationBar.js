@@ -44,10 +44,10 @@ export default class NavigationBar extends Component{
                 <StyledLink to={'/'}>
                     <NavItem>Moje zgłoszenia</NavItem>
                 </StyledLink>
-                <StyledLink to={'/'}>
-                    <NavItem>Profil specjalisty</NavItem>
+                <StyledLink to={'/specialists'}>
+                    <NavItem>Specjaliści</NavItem>
                 </StyledLink>
-                <StyledLink to={'/'}>
+                <StyledLink to={'/create/specialist'}>
                     <NavItem>Jestem specjalistą</NavItem>
                 </StyledLink>
                 <StyledLink to={'/'}>
