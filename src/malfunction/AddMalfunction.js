@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import MalfunctionObject from "./MalfunctionObject";
 import axios from "axios";
-import "./App.css"
+import "../css/App.css"
 
 export default class AddMalfunction extends Component {
     constructor(props) {
@@ -20,8 +20,7 @@ export default class AddMalfunction extends Component {
 
     processSubmit = (obj) => {
         obj.preventDefault()
-        console.log("processing...")
-        console.log(this.props)
+        console.debug("creating malfunction...")
         axios.post('http://localhost:8080/malfunctions/create' ,{
             name: obj.target.name.value,
             description: obj.target.description.value,
@@ -34,9 +33,10 @@ export default class AddMalfunction extends Component {
                 'Authorization' : 'Token ' + this.props.userdata.token
             }
         }).then((resp) => {
-            console.log(resp)
+            this.props.history.push('/');
+            window.location.reload(false);
         }).catch((err) => {
-            console.log(err)
+            console.error(err)
         })
     }
 

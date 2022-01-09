@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import {Link} from 'react-router-dom'
-import './LoginForm.css';
-import InputField from './InputField'
+import '../css/LoginForm.css';
+import InputField from '../util/InputField'
 
 export class RegisterForm extends Component {
     constructor(props) {
@@ -43,10 +43,10 @@ export class RegisterForm extends Component {
             matchingPassword: this.state.mPassword,
             email: this.state.email
         }).then((response) => {
-            alert('Success!');
             this.props.history.push('/');
+            window.location.reload(false);
         }).catch((error) => {
-            console.log(error.response.data.fieldErrors);
+            console.error(error.response.data.fieldErrors);
             alert(error.response.data.message)
         });
         this.resetForm();

@@ -50,7 +50,7 @@ export default class NavigationBar extends Component{
                 <StyledLink to={'/create/specialist'}>
                     <NavItem>Jestem specjalistą</NavItem>
                 </StyledLink>
-                <StyledLink to={'/'}>
+                <StyledLink to={'/my-account'}>
                     <NavItem>Konto</NavItem>
                 </StyledLink>
                 <Link to= '/login'>

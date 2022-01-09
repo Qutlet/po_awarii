@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import axios from "axios";
-import "./Details.css"
-import UserStorage from "./UserStorage";
+import "../css/Details.css"
+import UserStorage from "../util/UserStorage";
 
 export default class MalfunctionDetail extends Component{
     constructor(props) {

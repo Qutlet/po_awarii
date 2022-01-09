@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import MalfunctionObject from "./MalfunctionObject";
+import MalfunctionObject from "../malfunction/MalfunctionObject";
 import axios from "axios";
 import SpecilistProfileObject from "./SpecilistProfileObject";
 

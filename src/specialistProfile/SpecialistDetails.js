@@ -1,8 +1,8 @@
 import React, {Component} from "react";
 import axios from "axios";
-import "./Details.css"
-import UserStorage from "./UserStorage";
-import PhotoObject from "./PhotoObject";
+import "../css/Details.css"
+import UserStorage from "../util/UserStorage";
+import PhotoObject from "../util/PhotoObject";
 
 export default class SpecialistDetails extends Component{
     constructor(props) {
@@ -177,7 +177,7 @@ export default class SpecialistDetails extends Component{
                                             <h6 style={{margin : "0px",
                                                 flex: "0 0 75%",
                                                 maxWidth: "75%"}}>
-                                                Specjalizacje
+                                                Specjalizacje:
                                             </h6>
                                         </div>
                                         <div style={{
@@ -186,6 +186,31 @@ export default class SpecialistDetails extends Component{
                                             maxWidth: "75%"
                                         }}>{this.state.specialist.categories.join(", ")}</div>
 
+                                    </div>
+                                    <div style={{
+                                        display : "flex",
+                                        flexWrap: "wrap",
+                                        marginBottom : "5%"
+                                    }}>
+                                        <div style={{flex: "0 0 25%",
+                                            maxWidth: "25%"}}>
+                                            <h6 style={{margin : "0px",
+                                                flex: "0 0 75%",
+                                                maxWidth: "75%"}}>
+                                                Opis:
+                                            </h6>
+                                        </div>
+                                        <div style={{
+                                            color : "grey",
+                                            flex: "0 0 75%",
+                                            maxWidth: "75%"
+                                        }}>
+                                            {this.state.specialist.description}
+                                        </div>
+
+                                    </div>
+                                    <div>
+                                        <button>kontkt</button>
                                     </div>
                                 </div>
                                 <div className="specCard-body" style={{

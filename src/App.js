@@ -1,20 +1,19 @@
-import logo from './logo.svg';
 import React, {Component} from "react"
 import {Switch, Route, Redirect} from 'react-router-dom'
-import './App.css';
-import {LoginForm} from "./LoginForm";
-import {RegisterForm} from "./RegisterForm";
+import './css/App.css';
+import {LoginForm} from "./loginRegister/LoginForm";
+import {RegisterForm} from "./loginRegister/RegisterForm";
 
 
-import NavigationBar from "./NavigationBar";
-import UserStorage from "./UserStorage";
-import MalfunctionsList from "./MalfunctionsList";
-import AddMalfunction from "./AddMalfunction";
-import MalfunctionDetail from "./MalfunctionDetail";
-import axios from "axios";
-import SpecialistList from "./SpecialistList";
-import SpecialistDetails from "./SpecialistDetails";
-import CreateSpecialistProfile from "./CreateSpecialistProfile";
+import NavigationBar from "./util/NavigationBar";
+import UserStorage from "./util/UserStorage";
+import MalfunctionsList from "./malfunction/MalfunctionsList";
+import AddMalfunction from "./malfunction/AddMalfunction";
+import MalfunctionDetail from "./malfunction/MalfunctionDetail";
+import SpecialistList from "./specialistProfile/SpecialistList";
+import SpecialistDetails from "./specialistProfile/SpecialistDetails";
+import CreateSpecialistProfile from "./specialistProfile/CreateSpecialistProfile";
+import Account from "./user/Account";
 
 class App extends Component{
 
@@ -73,6 +72,8 @@ class App extends Component{
                     !UserStorage.isLoggedIn() ? (<Redirect to="/login"/>) : (<SpecialistDetails {...props} userdata={UserStorage} />) )}/>
                 <Route exact path={"/create/specialist"} render={(props) => (
                     !UserStorage.isLoggedIn() ? (<Redirect to="/login"/>) : (<CreateSpecialistProfile {...props} userdata={UserStorage} />) )}/>
+                <Route exact path={"/my-account"} render={(props) => (
+                    !UserStorage.isLoggedIn() ? (<Redirect to="/login"/>) : (<Account {...props} userdata={UserStorage} />) )}/>
             </Switch>
 
         </React.Fragment>

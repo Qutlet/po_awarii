@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import {Link} from 'react-router-dom'
-import './LoginForm.css';
-import UserStorage from "./UserStorage";
+import '../css/LoginForm.css';
+import UserStorage from "../util/UserStorage";
 
 
 export class LoginForm extends Component {
@@ -18,11 +18,11 @@ export class LoginForm extends Component {
             email: email,
             password: pass
         }).then((response) => {
-            console.log(response.data);
             UserStorage.login(response.data)
             this.props.history.push('/');
+            window.location.reload(false);
         }).catch((error) => {
-            console.log(error.message)
+            console.error(error.message)
         });
     }
 

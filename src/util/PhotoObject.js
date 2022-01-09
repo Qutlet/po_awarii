@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
-import "./Details.css"
+import "../css/Details.css"
 
 export default class PhotoObject extends Component {
     render() {

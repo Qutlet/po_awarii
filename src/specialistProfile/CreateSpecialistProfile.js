@@ -1,5 +1,5 @@
 import {Component} from "react";
-import CategoryChooser from "./Category/CategoryChooser"
+import CategoryChooser from "../Category/CategoryChooser"
 import axios from "axios";
 
 export default class CreateSpecialistProfile extends Component {
@@ -7,7 +7,7 @@ export default class CreateSpecialistProfile extends Component {
         super(props);
         this.state = {
             show: false,
-            catTmp : [{id:0 ,name : "Awaria Hydrauliczna"}, {id:1 ,name :"Awaria elektryczna"}],
+            catTmp : [],
             catValueTmp : 0,
             cat: [],
         }
@@ -28,7 +28,18 @@ export default class CreateSpecialistProfile extends Component {
 
     handleSubmit = (obj) => {
         obj.preventDefault()
-        console.log(obj)
+        const newCat = document.getElementById('newCaat').value;
+        if (newCat === ""){
+            return;
+        }
+        axios.post("http://localhost:8080/category?name=" + newCat, {}, {
+            headers: {
+                'Authorization': 'Token ' + this.props.userdata.token
+            }
+        }).then(r => r)
+        this.setState({ show: false });
+        document.getElementById('newCaat').value = "";
+        window.location.reload(false);
     };
 
 
@@ -37,7 +48,7 @@ export default class CreateSpecialistProfile extends Component {
                 'Authorization' : 'Token ' + this.props.userdata.token
             }}).then(r => {
             this.setState({
-                cat: r.data
+                catTmp: r.data
             })
         });
     }
@@ -72,12 +83,12 @@ export default class CreateSpecialistProfile extends Component {
 
     addCategory = (obj) => {
         obj.preventDefault()
-        let cat = this.state.catTmp[this.state.catValueTmp];
+        let cat = this.state.catValueTmp;
         let catArray = this.state.cat;
-        if (catArray.includes(cat.name)){
+        if (catArray.includes(cat)){
             return;
         }
-        catArray.push(cat.name)
+        catArray.push(cat)
         this.setState({
             cat: catArray
         })
@@ -85,23 +96,25 @@ export default class CreateSpecialistProfile extends Component {
 
     processSubmit = (obj) => {
         obj.preventDefault()
-        console.log("processing...")
-        console.log(this.props)
-        axios.post('http://localhost:8080/malfunctions/create' ,{
-            name: obj.target.name.value,
-            description: obj.target.description.value,
+        console.debug("creating spec profile...")
+        axios.post('http://localhost:8080/specProfile/create' ,{
+            firstName: obj.target.firstName.value,
+            lastName: obj.target.lastName.value,
             categories: this.state.cat,
-            location: obj.target.location.value,
+            customProfileName: obj.target.customProfileName.value,
             phoneNumber: obj.target.phone.value,
-            email: obj.target.email.value
+            email: obj.target.email.value,
+            location: obj.target.location.value,
+            description: obj.target.description.value
         },{
             headers : {
                 'Authorization' : 'Token ' + this.props.userdata.token
             }
         }).then((resp) => {
-            console.log(resp)
+            this.props.history.push('/');
+            window.location.reload(false);
         }).catch((err) => {
-            console.log(err)
+            console.error(err.message)
         })
     }
 
@@ -114,15 +127,15 @@ export default class CreateSpecialistProfile extends Component {
                     <form onSubmit={this.processSubmit}>
 
                         <label htmlFor="fname" style={this.labelStyle()}>Nazwa profilu/firmy:</label>
-                        <input type="text" style={this.inputStyle()} id="fname" name="customName"
+                        <input type="text" style={this.inputStyle()} id="fname" name="customProfileName"
                                placeholder="Podaj nazwe swojej firmy lub nazwij swój profil"/>
 
                         <label htmlFor="fname" style={this.labelStyle()}>Imię:</label>
-                        <input type="text" style={this.inputStyle()} id="fname" name="firstname"
+                        <input type="text" style={this.inputStyle()} id="fname" name="firstName"
                                placeholder="Imię"/>
 
                         <label htmlFor="fname" style={this.labelStyle()}>Nazwisko:</label>
-                        <input type="text" style={this.inputStyle()} id="fname" name="lastname"
+                        <input type="text" style={this.inputStyle()} id="fname" name="lastName"
                                placeholder="Nazwisko"/>
 
                         <label htmlFor="fname" style={this.labelStyle()}>Teren działania</label>
@@ -136,6 +149,10 @@ export default class CreateSpecialistProfile extends Component {
                         <label htmlFor="fname" style={this.labelStyle()}>E-mail:</label>
                         <input type="text" style={this.inputStyle()} id="fname" name="email"
                                placeholder="E-mail"/>
+
+                        <label htmlFor="fname" style={this.labelStyle()}>Opis</label>
+                        <input type="text" style={this.inputStyle()} id="fname" name="description"
+                               placeholder="Opis"/>
 
                         <label htmlFor="fname" style={{
                             width: "81.05%",
@@ -157,18 +174,21 @@ export default class CreateSpecialistProfile extends Component {
                             Wybierz swoje specjalizacje
                             <select style={this.inputStyle()} value={this.state.catValueTmp} onChange={this.processCategory}>
                                 {this.state.catTmp.map(cat =>
-                                    <option value={cat.id} key={cat.id}>{cat.name}</option>
+                                    <option value={cat.name} key={cat.id}>{cat.name}</option>
                                 )}
                             </select>
                             <button  onClick={this.addCategory}>Dodaj</button>
 
                             <CategoryChooser show={this.state.show} handleClose={this.hideModal} token={this.props.userdata.token} handleSubmit={this.handleSubmit}>
-                                <p>Modal</p>
                             </CategoryChooser>
                             <button type="button" onClick={this.showModal}>
                                 Dodaj nową kategorie
                             </button>
                         </label>
+
+
+                            <label htmlFor="fname" style={this.labelStyle()}>Photos: </label>
+                            <input type="file"  style={this.inputStyle()} multiple name="image" accept="image/png, image/jpeg"/>
 
 
                         <div style={{textAlign: "center"}}>

@@ -1,19 +1,13 @@
-import React, {Component} from "react";
+import {Component} from "react";
 import PropTypes from 'prop-types'
-import {ProductConsumer} from "./context";
+import {ProductConsumer} from "../util/context";
 import styled from 'styled-components';
 import {Link} from "react-router-dom";
 
-export default class SpecilistProfileObject extends Component {
+export default class MalfunctionObject extends Component {
 
     render() {
-        const {id,firstName,lastName,categories,customProfileName,userPhoto} = this.props.specialistProfileObject;
-        let url;
-        if(userPhoto) {
-            url = "http://localhost:8080/file/download/" + userPhoto;
-        } else {
-            url = "default_profile.png"
-        }
+        const {id,name,description,categories,location} = this.props.malfunctionObject;
         return (
             <ProductWrapper className="col -9 mx-auto col-md-6 col-lg-3 my-3">
                 <div className="card">
@@ -21,7 +15,7 @@ export default class SpecilistProfileObject extends Component {
                     <ProductConsumer>
                         {(value) => (
                             <Link to={{
-                                pathname: '/specialist/' + id ,
+                                pathname: '/malfunction/' + id ,
                                 state: {
                                     id: id
                                 }
@@ -29,32 +23,17 @@ export default class SpecilistProfileObject extends Component {
                                 <div className="img-container p-5">
 
                                     <div className="card-footer d-flex justify-content-between">
-                                        <div style={{display : "flex"}}>
-                                            <img src={url} alt="alternatetext"
-                                                 style={{
-                                                     borderColor: "gold",
-                                                     width: "10%",
-                                                     borderWidth: "5px",
-                                                     borderStyle: "solid"}}
-                                            />
-                                            <h4 className="align-self-center mb-0" style={{
-                                                marginLeft: "10px",
-                                                fontSize: "1.7em"
-                                            }}>
-                                                {firstName + " " + lastName + ": " + customProfileName}
-                                            </h4>
-                                        </div>
-                                        <p style={{
-                                            marginBottom: "0px",
-                                            fontSize : "smaller"
+                                        <h4 className="align-self-center mb-0" style={{
+                                            margin: "0px",
+                                            fontSize: "1.5em"
                                         }}>
-                                          Specjalizaje:
-                                        </p>
-                                        <p className="align-self-center mb-0" style={{
-                                            marginLeft: "10px",
-                                            marginTop: "0px"
-                                        }}>
+                                            {name}
+                                        </h4>
+                                        <p className="align-self-center mb-0">
                                             {categories.join(', ')}
+                                        </p>
+                                        <p className="align-self-center mb-0">
+                                            {location}
                                         </p>
                                     </div>
 
@@ -69,15 +48,14 @@ export default class SpecilistProfileObject extends Component {
     }
 }
 
-SpecilistProfileObject.propTypes = {
-    specialistProfileObject:PropTypes.shape({
+ MalfunctionObject.propTypes = {
+    malfunctionObject:PropTypes.shape({
         id:PropTypes.number,
-        firstName:PropTypes.string,
-        lastName:PropTypes.string,
+        name:PropTypes.string,
+        description:PropTypes.string,
         categories:PropTypes.array,
-        customProfileName:PropTypes.string,
-        userPhoto:PropTypes.string
-    }).isRequired
+        location:PropTypes.string
+        }).isRequired
 }
 
 
