@@ -32,16 +32,43 @@ export default class NavigationBar extends Component{
         );
     }
 
+    specRender = () => {
+        return (
+        <NavWrapper className="nav-bar">
+            <StyledLink to={'/malfunctions/add'}>
+                <NavItem>Zgłoś awarie</NavItem>
+            </StyledLink>
+            <StyledLink to={'/malfunctions'}>
+                <NavItem>Awarie</NavItem>
+            </StyledLink>
+            <StyledLink to={'/my-malfunctions'}>
+                <NavItem>Moje zgłoszenia</NavItem>
+            </StyledLink>
+            <StyledLink to={'/specialists'}>
+                <NavItem>Specjaliści</NavItem>
+            </StyledLink>
+            <StyledLink to={'/my-jobs'}>
+                <NavItem>Moje zlecenia</NavItem>
+            </StyledLink>
+            <StyledLink to={'/my-account'}>
+                <NavItem>Konto</NavItem>
+            </StyledLink>
+            <Link to= '/login'>
+                <NavButtonLogin onClick={this.logout}>
+                    Wyloguj
+                </NavButtonLogin>
+            </Link>
+        </NavWrapper>
+        )
+    }
+
     logIn = () => {
         return (
             <NavWrapper className="nav-bar">
                 <StyledLink to={'/malfunctions/add'}>
                     <NavItem>Zgłoś awarie</NavItem>
                 </StyledLink>
-                <StyledLink to={'/malfunctions'}>
-                    <NavItem>Awarie</NavItem>
-                </StyledLink>
-                <StyledLink to={'/'}>
+                <StyledLink to={'/my-malfunctions'}>
                     <NavItem>Moje zgłoszenia</NavItem>
                 </StyledLink>
                 <StyledLink to={'/specialists'}>
@@ -64,6 +91,10 @@ export default class NavigationBar extends Component{
 
     render() {
         if (this.props.userdata.isLoggedIn()) {
+            console.log(this.props.userdata)
+            if (this.props.userdata.isSpec()){
+                return this.specRender();
+            }
             return this.logIn()
         } else {
             return this.notLogIn()

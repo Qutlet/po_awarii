@@ -44,8 +44,11 @@ export default class SpecialistDetails extends Component{
             )
         }
         return this.state.specialist.photos.map(photo => {
+            let url = "http://localhost:8080/file/download/" + photo;
             return (
-                <PhotoObject key={photo.name} photo={photo}/>
+                <div className="gallery">
+                    <img src={url} width="100" height="100" alt={"photo"}/>
+                </div>
             )
         })
     }
@@ -112,6 +115,7 @@ export default class SpecialistDetails extends Component{
                                     borderRightColor: "gold",
                                     borderBottomColor: "gold",
                                     minWidth: "25%",
+                                    maxWidth: "40%",
                                     height: "fit-content"
                                 }}>
                                     <div style={{

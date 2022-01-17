@@ -84,6 +84,46 @@
     }
 }
 
+.intrested {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: gold;
+    border: none;
+    color: black;
+    text-align: center;
+    font-size: 28px;
+    padding: 20px;
+    width: 25%;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.intrested span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.intrested span:after {
+    content: '\1F5F8';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.intrested:hover span {
+    padding-right: 25px;
+}
+
+.intrested:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
 .kontakt {
     display: inline-block;
     border-radius: 4px;
@@ -107,7 +147,7 @@
 }
 
 .kontakt span:after {
-    content: '\2709';
+    content: ' \1F5E8';
     position: absolute;
     opacity: 0;
     top: 0;
@@ -183,11 +223,6 @@ div.gallery {
 
 div.gallery:hover {
     border: 1px solid #777;
-}
-
-div.gallery img {
-    width: 100%;
-    height: auto;
 }
 
 div.desc {

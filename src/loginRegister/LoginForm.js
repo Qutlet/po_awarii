@@ -18,7 +18,7 @@ export class LoginForm extends Component {
             email: email,
             password: pass
         }).then((response) => {
-            UserStorage.login(response.data)
+            UserStorage.login(response.data.roleLevel, response.data.token, response.data.userId, response.data.specId)
             this.props.history.push('/');
             window.location.reload(false);
         }).catch((error) => {

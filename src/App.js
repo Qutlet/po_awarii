@@ -3,8 +3,7 @@ import {Switch, Route, Redirect} from 'react-router-dom'
 import './css/App.css';
 import {LoginForm} from "./loginRegister/LoginForm";
 import {RegisterForm} from "./loginRegister/RegisterForm";
-
-
+import MyMalfunctionDetail from "./malfunction/MyMalfunctionDetail"
 import NavigationBar from "./util/NavigationBar";
 import UserStorage from "./util/UserStorage";
 import MalfunctionsList from "./malfunction/MalfunctionsList";
@@ -14,28 +13,10 @@ import SpecialistList from "./specialistProfile/SpecialistList";
 import SpecialistDetails from "./specialistProfile/SpecialistDetails";
 import CreateSpecialistProfile from "./specialistProfile/CreateSpecialistProfile";
 import Account from "./user/Account";
+import MyMalfunctions from "./malfunction/MyMalfunctions";
+import MyJobs from "./specialistProfile/MyJobs";
 
 class App extends Component{
-
-    // send = (event) => {
-    //     var bodyFormData = new FormData()
-    //     bodyFormData.append('senderId', 'Fred');
-    //     bodyFormData.append('file', event.target.files[0]);
-    //     axios({
-    //         method: "post",
-    //         url: "http://localhost:8080/file/upload",
-    //         data: bodyFormData,
-    //         headers: { "Content-Type": "multipart/form-data" },
-    //     })
-    //         .then(function (response) {
-    //             //handle success
-    //             console.log(response);
-    //         })
-    //         .catch(function (response) {
-    //             //handle error
-    //             console.log(response);
-    //         })
-    // }
 
   render() {
     return (
@@ -45,17 +26,6 @@ class App extends Component{
                     <NavigationBar {...props} userdata={UserStorage} />
                 )}
             />
-
-
-                {/*<div>*/}
-
-                {/*    <label>Photos: </label>*/}
-                {/*    <input type="file" name="image" accept="image/png, image/jpeg" onInput={this.send}/>*/}
-
-                {/*</div>*/}
-
-                {/*<img src="http://localhost:8080/file/download/99d975b5-0fb5-4147-abef-311b933bb6c3" alt="alternatetext"/>*/}
-
 
             <Switch>
                 <Route exact path={"/login"} component={LoginForm} />
@@ -74,6 +44,12 @@ class App extends Component{
                     !UserStorage.isLoggedIn() ? (<Redirect to="/login"/>) : (<CreateSpecialistProfile {...props} userdata={UserStorage} />) )}/>
                 <Route exact path={"/my-account"} render={(props) => (
                     !UserStorage.isLoggedIn() ? (<Redirect to="/login"/>) : (<Account {...props} userdata={UserStorage} />) )}/>
+                <Route exact path={"/my-malfunctions"} render={(props) => (
+                    !UserStorage.isLoggedIn() ? (<Redirect to="/login"/>) : (<MyMalfunctions {...props} userdata={UserStorage} />) )}/>
+                <Route exact path={"/my-jobs"} render={(props) => (
+                    !UserStorage.isLoggedIn() ? (<Redirect to="/login"/>) : (<MyJobs {...props} userdata={UserStorage} />) )}/>
+                <Route exact path={"/my-malfunctions/:id"} render={(props) => (
+                    !UserStorage.isLoggedIn() ? (<Redirect to="/login"/>) : (<MyMalfunctionDetail {...props} userdata={UserStorage} />) )}/>
             </Switch>
 
         </React.Fragment>

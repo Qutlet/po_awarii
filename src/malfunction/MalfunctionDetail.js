@@ -36,9 +36,31 @@ export default class MalfunctionDetail extends Component{
         })
     }
 
+    intrested = () => {
+        if (this.props.userdata.isSpec()) {
+            return (
+                <div>
+                    <button className={'intrested'} onClick={this.specIntr}>
+                        <span>Jestem zainteresowany</span>
+                    </button>
+                </div>
+            )
+        }
+    }
+
+    specIntr = () => {
+        const malfunctionID = this.state.id;
+        axios.put("http://localhost:8080/malfunctions/malfunction/" + malfunctionID + "/specialist/interested", {},{
+            headers: {
+                'Authorization': 'Token ' + this.props.userdata.token
+            }
+        }).then(r => {
+            console.log(r)
+        })
+    }
+
 
     render() {
-        console.log(this.state.id)
         if (this.state.malfunction == null) {
             return (
                 <div className="lds-roller">
@@ -112,6 +134,7 @@ export default class MalfunctionDetail extends Component{
                         <button className={'kontakt'} >
                             <span>Kontakt</span>
                         </button>
+                        {this.intrested()}
                     </div>
                 </div>
             </div>

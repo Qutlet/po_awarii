@@ -1,4 +1,4 @@
-import './modal.css';
+import '../css/modal.css';
 
 export default function CategoryChooser({ handleClose, show, children, token, handleSubmit })  {
 
