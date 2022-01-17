@@ -9,7 +9,8 @@ export default class MyMalfunctionDetail extends Component {
         this.state = {
             id:  this.props.match.params.id,
             malfunction: {},
-            specialists: []
+            specialists: [],
+            specialist: {}
         }
     }
 
@@ -24,6 +25,17 @@ export default class MyMalfunctionDetail extends Component {
             this.setState({
                 malfunction: r.data
             })
+            if (r.data.specialistId) {
+                axios.get('http://localhost:8080/specProfile/' + r.data.specialistId + '/profile', {
+                    headers: {
+                        'Authorization': 'Token ' + this.props.userdata.token
+                    }
+                }).then(resp => {
+                    this.setState({
+                        specialist: resp.data
+                    })
+                })
+            }
             for (let i = 0; i < r.data.specialistIds.length; i++) {
                 axios.get('http://localhost:8080/specProfile/' + r.data.specialistIds[i] + '/profile', {
                     headers: {
@@ -102,6 +114,92 @@ export default class MyMalfunctionDetail extends Component {
         })
     }
 
+    renderMidDiv = () => {
+        if(this.state.malfunction.status === "IN_WORK") {
+            return (
+                <div>
+                    <div style={{textAlign: "center"}}>
+                        <h2>Wykonawca</h2>
+                    </div>
+                    <div style={{
+                        marginLeft: "15%",
+                        marginRight: "15%",
+                        textAlign: "center",
+                        border: "solid",
+                        borderColor: "rgba(105,85,85,0.45)"
+                    }}>
+                        <div style={{display: "flex",justifyContent: "space-between"}}>
+                            <div>
+                                <Link to={{
+                                    pathname: '/specialist/' + this.state.specialist.id ,
+                                    state: {
+                                        id: this.state.specialist.id
+                                    }
+                                }}>
+                                    <h4>{this.state.specialist.customProfileName}: {this.state.specialist.firstName} {this.state.specialist.lastName}</h4>
+                                </Link>
+                            </div>
+                            <div>
+                                <button>Zakończ</button>
+                                <button>Kontakt</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )
+        }
+        if (this.state.malfunction.status === "PENDING") {
+            return (
+                <div>
+                    <div style={{textAlign: "center"}}>
+                        <h2>Zainteresowani specjalisci</h2>
+                    </div>
+                    <div style={{
+                        marginLeft: "15%",
+                        marginRight: "15%",
+                        textAlign: "center",
+                        border: "solid",
+                        borderColor: "rgba(105,85,85,0.45)"
+                    }}>
+                        {this.renderSpecialists()}
+                    </div>
+                </div>
+            )
+        }
+        if (this.state.malfunction.status === "ENDED") {
+            return (
+                <div>
+                    <div style={{textAlign: "center"}}>
+                        <h2>Wykonawca</h2>
+                    </div>
+                    <div style={{
+                        marginLeft: "15%",
+                        marginRight: "15%",
+                        textAlign: "center",
+                        border: "solid",
+                        borderColor: "rgba(105,85,85,0.45)"
+                    }}>
+                        <div style={{display: "flex",justifyContent: "space-between"}}>
+                            <div>
+                                <Link to={{
+                                    pathname: '/specialist/' + this.state.specialist.id ,
+                                    state: {
+                                        id: this.state.specialist.id
+                                    }
+                                }}>
+                                    <h4>{this.state.specialist.customProfileName}: {this.state.specialist.firstName} {this.state.specialist.lastName}</h4>
+                                </Link>
+                            </div>
+                            <div>
+                                <button>Kontakt</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )
+        }
+    }
+
     render() {
         if (this.state.malfunction === {} || this.state.specialists === []) {
             return (
@@ -154,18 +252,7 @@ export default class MyMalfunctionDetail extends Component {
                         </div>
                     </div>
                 </div>
-                <div style={{textAlign: "center"}}>
-                    <h2>Zainteresowani specjalisci</h2>
-                </div>
-                <div style={{
-                    marginLeft: "15%",
-                    marginRight: "15%",
-                    textAlign: "center",
-                    border: "solid",
-                    borderColor: "rgba(105,85,85,0.45)"
-                }}>
-                    {this.renderSpecialists()}
-                </div>
+                {this.renderMidDiv()}
             </div>
         );
     }
