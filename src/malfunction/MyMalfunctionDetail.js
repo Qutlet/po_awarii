@@ -80,6 +80,19 @@ export default class MyMalfunctionDetail extends Component {
         window.location.reload(false)
     }
 
+    endWork = () => {
+        axios.put("http://localhost:8080/malfunctions/malfunction/" + this.state.id + "/workEnded", {}, {
+            headers: {
+                'Authorization': 'Token ' + this.props.userdata.token
+            }
+        }).then( r => console.log(r.data))
+        window.location.reload(false)
+    }
+
+    chat = (id) => {
+
+    }
+
     renderSpecialists = () => {
         if (this.state.specialists.length === 0) {
             return (
@@ -106,8 +119,8 @@ export default class MyMalfunctionDetail extends Component {
                     </div>
                     <div>
                         <button onClick={() => this.deleteSpec(specialists.id)}>Odrzuć</button>
-                        <button onClick={() => this.chooseSpec(specialists.id)}>Kontakt</button>
-                        <button onClick={() => this.chooseSpec(specialists.id)}>Wybierz</button>
+                        <button onClick={() => this.chat(specialists.id)}>Kontakt</button>
+                        <button onClick={() => this.chooseSpec(specialists.userId)}>Wybierz</button>
                     </div>
                 </div>
             )
@@ -140,8 +153,8 @@ export default class MyMalfunctionDetail extends Component {
                                 </Link>
                             </div>
                             <div>
-                                <button>Zakończ</button>
-                                <button>Kontakt</button>
+                                <button onClick={() => this.endWork()}>Zakończ</button>
+                                <button onClick={() => this.chat(this.state.specialist.id)}>Kontakt</button>
                             </div>
                         </div>
                     </div>
@@ -191,7 +204,7 @@ export default class MyMalfunctionDetail extends Component {
                                 </Link>
                             </div>
                             <div>
-                                <button>Kontakt</button>
+                                <button onClick={() => this.chat(this.state.specialist.id)}>Kontakt</button>
                             </div>
                         </div>
                     </div>
