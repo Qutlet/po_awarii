@@ -83,12 +83,12 @@ export default class CreateSpecialistProfile extends Component {
 
     addCategory = (obj) => {
         obj.preventDefault()
-        let cat = this.state.catValueTmp;
+        let cat = this.state.catTmp[this.state.catValueTmp];
         let catArray = this.state.cat;
         if (catArray.includes(cat)){
             return;
         }
-        catArray.push(cat)
+        catArray.push(cat.name)
         this.setState({
             cat: catArray
         })
@@ -97,7 +97,7 @@ export default class CreateSpecialistProfile extends Component {
     processSubmit = (obj) => {
         obj.preventDefault()
         console.debug("creating spec profile...")
-        axios.post('https://po-awarii.herokuapp.com/specProfile/create' ,{
+        axios.post('/specProfile/create' ,{
             firstName: obj.target.firstName.value,
             lastName: obj.target.lastName.value,
             categories: this.state.cat,
