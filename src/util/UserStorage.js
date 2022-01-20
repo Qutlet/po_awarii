@@ -13,6 +13,11 @@ class UserStorage{
 
     }
 
+    createdSpecProf(id) {
+        UserStorage.roleLevel = 2;
+        UserStorage.specId = id;
+    }
+
     logout() {
         window.localStorage.removeItem('userdata');
         UserStorage.token = ""

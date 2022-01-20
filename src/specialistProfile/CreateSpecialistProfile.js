@@ -111,6 +111,7 @@ export default class CreateSpecialistProfile extends Component {
                 'Authorization' : 'Token ' + this.props.userdata.token
             }
         }).then((resp) => {
+            this.props.userdata.createdSpecProf(resp.data.id);
             this.props.history.push('/');
             window.location.reload(false);
         }).catch((err) => {
