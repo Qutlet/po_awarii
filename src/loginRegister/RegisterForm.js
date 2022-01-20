@@ -36,7 +36,7 @@ export class RegisterForm extends Component {
         this.setState({
             buttonDisabled:true
         })
-        axios.post('http://localhost:8080/registration', {
+        axios.post('https://po-awarii.herokuapp.com/registration', {
             firstName: this.state.firstName,
             lastName: this.state.lastName,
             password: this.state.password,
