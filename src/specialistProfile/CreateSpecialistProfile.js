@@ -97,7 +97,7 @@ export default class CreateSpecialistProfile extends Component {
     processSubmit = (obj) => {
         obj.preventDefault()
         console.debug("creating spec profile...")
-        axios.post('/specProfile/create' ,{
+        axios.post('https://po-awarii.herokuapp.com/specProfile/create' ,{
             firstName: obj.target.firstName.value,
             lastName: obj.target.lastName.value,
             categories: this.state.cat,
