@@ -421,7 +421,8 @@ export default class Account extends Component {
                         borderWidth: "thick",
                         borderStyle: "solid",
                         borderColor: "white",
-                        borderLeftColor: "gold"}}>
+                        borderLeftColor: "gold",
+                        maxWidth:"45%"}}>
                         <div style={{
                             display : "flex",
                             flexWrap: "wrap",
