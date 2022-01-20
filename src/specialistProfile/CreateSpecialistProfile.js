@@ -32,7 +32,7 @@ export default class CreateSpecialistProfile extends Component {
         if (newCat === ""){
             return;
         }
-        axios.post("http://localhost:8080/category?name=" + newCat, {}, {
+        axios.post("https://po-awarii.herokuapp.com/category?name=" + newCat, {}, {
             headers: {
                 'Authorization': 'Token ' + this.props.userdata.token
             }
@@ -44,7 +44,7 @@ export default class CreateSpecialistProfile extends Component {
 
 
     componentDidMount() {
-        axios.get("http://localhost:8080/category",{ headers : {
+        axios.get("https://po-awarii.herokuapp.com/category",{ headers : {
                 'Authorization' : 'Token ' + this.props.userdata.token
             }}).then(r => {
             this.setState({
@@ -97,7 +97,7 @@ export default class CreateSpecialistProfile extends Component {
     processSubmit = (obj) => {
         obj.preventDefault()
         console.debug("creating spec profile...")
-        axios.post('http://localhost:8080/specProfile/create' ,{
+        axios.post('https://po-awarii.herokuapp.com/specProfile/create' ,{
             firstName: obj.target.firstName.value,
             lastName: obj.target.lastName.value,
             categories: this.state.cat,

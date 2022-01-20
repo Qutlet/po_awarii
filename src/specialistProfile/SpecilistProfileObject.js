@@ -10,7 +10,7 @@ export default class SpecilistProfileObject extends Component {
         const {id,firstName,lastName,categories,customProfileName,userPhoto} = this.props.specialistProfileObject;
         let url;
         if(userPhoto) {
-            url = "http://localhost:8080/file/download/" + userPhoto;
+            url = "https://po-awarii.herokuapp.com/file/download/" + userPhoto;
         } else {
             url = "default_profile.png"
         }

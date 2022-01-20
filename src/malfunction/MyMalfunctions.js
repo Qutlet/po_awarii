@@ -74,7 +74,7 @@ export default class MyMalfunctions extends Component {
         let pending = [];
         let inWork = [];
         let ended = [];
-        axios.get("http://localhost:8080/malfunctions/user/" + userId, {
+        axios.get("https://po-awarii.herokuapp.com/malfunctions/user/" + userId, {
             headers: {
                 'Authorization': 'Token ' + this.props.userdata.token
             }

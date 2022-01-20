@@ -17,7 +17,7 @@ export default class SpecialistDetails extends Component{
 
     componentDidMount = () => {
         const id = this.state.id;
-        axios.get('http://localhost:8080/specProfile/' + id + '/profile', {
+        axios.get('https://po-awarii.herokuapp.com/specProfile/' + id + '/profile', {
             headers: {
                 'Authorization': 'Token ' + this.props.userdata.token
             }
@@ -44,7 +44,7 @@ export default class SpecialistDetails extends Component{
             )
         }
         return this.state.specialist.photos.map(photo => {
-            let url = "http://localhost:8080/file/download/" + photo;
+            let url = "https://po-awarii.herokuapp.com/file/download/" + photo;
             return (
                 <div className="gallery">
                     <img src={url} width="100" height="100" alt={"photo"}/>
@@ -71,7 +71,7 @@ export default class SpecialistDetails extends Component{
         }
         let url;
         if(this.state.specialist.userPhoto) {
-            url = "http://localhost:8080/file/download/" + this.state.specialist.userPhoto;
+            url = "https://po-awarii.herokuapp.com/file/download/" + this.state.specialist.userPhoto;
         } else {
             url = "../default_profile.png"
         }

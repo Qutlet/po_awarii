@@ -13,9 +13,7 @@ export default class Message extends Component {
     render() {
         return (
             <div>
-                <SockJsClient url='http://localhost:8080/ws' topics={['/topics/all']}
-                              onMessage={(msg) => { console.log(msg); }}
-                              ref={ (client) => { this.clientRef = client }} />
+
             </div>
         );
     }

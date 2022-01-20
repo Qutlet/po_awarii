@@ -24,7 +24,7 @@ export default class MalfunctionsList extends Component {
     }
 
     componentDidMount = () => {
-        axios.get('http://localhost:8080/malfunctions/all', {
+        axios.get('https://po-awarii.herokuapp.com/malfunctions/all', {
              headers : {
                  'Authorization' : 'Token ' + this.props.userdata.token
              }

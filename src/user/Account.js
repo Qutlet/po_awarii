@@ -50,7 +50,7 @@ export default class Account extends Component {
             )
         }
         return this.state.specialist.photos.map(photo => {
-            let url = "http://localhost:8080/file/download/" + photo;
+            let url = "https://po-awarii.herokuapp.com/file/download/" + photo;
             return (
                 <div className="gallery">
                     <img src={url} width="100" height="100" alt={"photo"}/>
@@ -60,7 +60,7 @@ export default class Account extends Component {
     }
 
     componentDidMount() {
-        axios.get("http://localhost:8080/users/get/me", {
+        axios.get("https://po-awarii.herokuapp.com/users/get/me", {
             headers: {
                 'Authorization': 'Token ' + this.props.userdata.token
             }
@@ -70,7 +70,7 @@ export default class Account extends Component {
                 userInfo: r.data
             })
 
-            axios.get("http://localhost:8080/specProfile/user/" + this.state.userInfo.id, {
+            axios.get("https://po-awarii.herokuapp.com/specProfile/user/" + this.state.userInfo.id, {
                 headers: {
                     'Authorization': 'Token ' + this.props.userdata.token
                 }
@@ -130,7 +130,7 @@ export default class Account extends Component {
             return;
         }
         const newPhone = document.getElementById('editPhone2').value;
-        axios.put("http://localhost:8080/users?userID=" + userId, {
+        axios.put("https://po-awarii.herokuapp.com/users?userID=" + userId, {
                 firstName: newName,
                 lastName: newLastName,
                 email: newEmail,
@@ -167,7 +167,7 @@ export default class Account extends Component {
             alert("Hasla nie są takie same")
             return;
         }
-        axios.put("http://localhost:8080?users/password?userID=" + userId,
+        axios.put("https://po-awarii.herokuapp.com/users/password?userID=" + userId,
             {
                 oldPassword: oldPass,
                 password: newPass,
@@ -215,7 +215,7 @@ export default class Account extends Component {
             alert("Opis nie może być pusty")
             return;
         }
-        axios.put("http://localhost:8080/specProfile/" + specId + "/edit", {
+        axios.put("https://po-awarii.herokuapp.com/specProfile/" + specId + "/edit", {
                 customProfileName: newName,
                 description: newDesc,
                 email: newEmail,
@@ -245,7 +245,7 @@ export default class Account extends Component {
             bodyFormData.append("purpose", "SPECIALIST_WORK_PHOTO")
             axios({
                 method: "post",
-                url: "http://localhost:8080/file/upload",
+                url: "https://po-awarii.herokuapp.com/file/upload",
                 data: bodyFormData,
                 headers: { "Content-Type": "multipart/form-data" },
             })
@@ -269,7 +269,7 @@ export default class Account extends Component {
             bodyFormData.append("purpose", "USER_PROFILE_PHOTO")
             axios({
                 method: "post",
-                url: "http://localhost:8080/file/upload",
+                url: "https://po-awarii.herokuapp.com/file/upload",
                 data: bodyFormData,
                 headers: { "Content-Type": "multipart/form-data" },
             })
@@ -471,7 +471,7 @@ export default class Account extends Component {
         }
         let url;
         if(this.state.userInfo.photo) {
-            url = "http://localhost:8080/file/download/" + this.state.userInfo.photo;
+            url = "https://po-awarii.herokuapp.com/file/download/" + this.state.userInfo.photo;
         } else {
             url = "../default_profile.png"
         }

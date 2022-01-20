@@ -10,7 +10,7 @@ export default class MyMalfunctionObject extends Component {
     delete = (obj) => {
         obj.preventDefault()
         const id = this.props.myMalfunctionObject.id;
-        axios.delete("http://localhost:8080/malfunctions/" + id + "/delete", {
+        axios.delete("https://po-awarii.herokuapp.com/malfunctions/" + id + "/delete", {
             headers: {
                 'Authorization': 'Token ' + this.props.token
             }

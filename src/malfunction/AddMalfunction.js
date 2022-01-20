@@ -21,7 +21,7 @@ export default class AddMalfunction extends Component {
     processSubmit = (obj) => {
         obj.preventDefault()
         console.debug("creating malfunction...")
-        axios.post('http://localhost:8080/malfunctions/create' ,{
+        axios.post('https://po-awarii.herokuapp.com/malfunctions/create' ,{
             name: obj.target.name.value,
             description: obj.target.description.value,
             categories: this.state.cat,
