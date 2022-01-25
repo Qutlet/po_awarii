@@ -39,6 +39,7 @@ body{
     border-color: gold;
     background: gold;
     font-size: 20px;
+    width: 50%;
 }
 
 .login-button {
@@ -52,6 +53,7 @@ body{
     padding: 20px;
     transition: all 0.5s;
     cursor: pointer;
+    width: 25%;
     margin: 10px;
 }
 
@@ -82,4 +84,28 @@ body{
 
 .login-swap {
     text-align: center;
+}
+
+@media screen and (max-width: 700px){
+    .login-input{
+        height: 50px;
+        border-style: solid;
+        border-color: gold;
+        background: gold;
+        font-size: 20px;
+    }
+
+    .login-button {
+        display: inline-block;
+        border-radius: 4px;
+        background-color: gold;
+        border: none;
+        color: black;
+        text-align: center;
+        font-size: 28px;
+        padding: 20px;
+        transition: all 0.5s;
+        cursor: pointer;
+        margin: 10px;
+    }
 }
