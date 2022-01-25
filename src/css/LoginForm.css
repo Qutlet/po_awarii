@@ -35,7 +35,6 @@ body{
 
 .login-input{
     height: 50px;
-    width: 50%;
     border-style: solid;
     border-color: gold;
     background: gold;
@@ -51,7 +50,6 @@ body{
     text-align: center;
     font-size: 28px;
     padding: 20px;
-    width: 25%;
     transition: all 0.5s;
     cursor: pointer;
     margin: 10px;

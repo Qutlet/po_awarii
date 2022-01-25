@@ -306,16 +306,8 @@ export default class Account extends Component {
         }
         return (
             <div className="col-md-8">
-                <div className="specCard mb-3" style={{flexDirection: "row"}}>
-                    <div className="specCard-body" style={{
-                        borderStyle: "solid",
-                        borderColor: "white",
-                        borderWidth: "thick",
-                        borderRightColor: "gold",
-                        borderBottomColor: "gold",
-                        minWidth: "25%",
-                        height: "fit-content"
-                    }}>
+                <div className="specCard mb-3 account-v2" >
+                    <div className="specCard-body specCard-body-v2">
                         <div style={{
                             display : "flex",
                             flexWrap: "wrap",
@@ -417,12 +409,7 @@ export default class Account extends Component {
                             <button onClick={this.showModalSpec}>Edytuj</button>
                         </div>
                     </div>
-                    <div className="specCard-body" style={{
-                        borderWidth: "thick",
-                        borderStyle: "solid",
-                        borderColor: "white",
-                        borderLeftColor: "gold",
-                        maxWidth:"45%"}}>
+                    <div className="specCard-body specCard-body-v3">
                         <div style={{
                             display : "flex",
                             flexWrap: "wrap",
@@ -486,7 +473,7 @@ export default class Account extends Component {
                         <div className={"col-md-4 mb-3"}>
                             <div className="specCard">
                                 <div className="specCard-body">
-                                    <div style={{
+                                    <div className={"account-v1"} style={{
                                         display: "flex",
                                         alignItems: "center"
                                     }}>

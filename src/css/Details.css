@@ -259,3 +259,76 @@ div.desc {
     clear: both;
 }
 
+.specCard-body-v2 {
+    border-style: solid;
+    border-color: white;
+    border-width: thick;
+    border-right-color: gold;
+    min-width: 25%;
+    max-width: 40%;
+    height: fit-content;
+}
+
+.specCard-body-v3 {
+    border-width: thick;
+    border-style: solid;
+    border-color: white;
+    border-left-color: gold;
+}
+
+.profile_photo_spec {
+    display: block;
+}
+.account-v1 {
+
+}
+
+.account-v2 {
+    flex-direction: row;
+}
+
+@media screen and (max-width: 700px){
+    .profile_photo_spec {
+        display: none;
+    }
+
+    .specCard {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 0 solid rgba(0,0,0,.125);
+        border-radius: .25rem;
+    }
+
+    .specCard-body-v2 {
+        border-style: solid;
+        border-color: white;
+        border-width: thick;
+        border-bottom-color: gold;
+        min-width: 25%;
+        max-width: 100%;
+        height: fit-content;
+    }
+
+    .specCard-body-v3 {
+        border-width: thick;
+        border-style: solid;
+        border-color: white;
+        border-top-color: gold;
+    }
+
+    .account-v1 {
+        flex-direction: column;
+        font-size: x-small;
+    }
+
+    .account-v2 {
+        flex-direction: column;
+    }
+
+}
+
