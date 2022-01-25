@@ -62,7 +62,7 @@ export class RegisterForm extends Component {
                             type="text"
                             name="firstName"
                             className={'login-input'}
-                            placeholder="Your First Name"
+                            placeholder="Imię"
                             id="registerFirstName"
                             autoComplete="off"
                             value={this.state.firstName}
@@ -74,7 +74,7 @@ export class RegisterForm extends Component {
                             type="text"
                             name="lastName"
                             className={'login-input'}
-                            placeholder="Your Last Name"
+                            placeholder="Nazwisko"
                             id="registerLastName"
                             autoComplete="off"
                             value={this.state.lastName}
@@ -86,7 +86,7 @@ export class RegisterForm extends Component {
                             type="email"
                             name="email"
                             className={'login-input'}
-                            placeholder="Your Email"
+                            placeholder="Email"
                             id="registerEmail"
                             autoComplete="off"
                             value={this.state.email}
@@ -98,7 +98,7 @@ export class RegisterForm extends Component {
                             type="password"
                             name="password"
                             className={'login-input'}
-                            placeholder="Your Password"
+                            placeholder="Hasło"
                             id="registerPassword"
                             autoComplete="off"
                             value={this.state.password}
@@ -110,7 +110,7 @@ export class RegisterForm extends Component {
                             type="password"
                             name="mPassword"
                             className={'login-input'}
-                            placeholder="Please provide your password again"
+                            placeholder="Hasło"
                             id="registerMPassword"
                             autoComplete="off"
                             value={this.state.mPassword}

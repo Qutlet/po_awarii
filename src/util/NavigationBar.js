@@ -37,24 +37,24 @@ export default class NavigationBar extends Component{
         return (
         <nav className="navWrapper">
             <div className={"dropdown"}>
-                <h1>O</h1>
+                <img style={{width: "40px"}} src={"menu.png"}  alt={"menu"}/>
                 <div className="dropdown-content">
-                    <Link className={"styledLink"} to={'/malfunctions/add'}>
+                    <Link className={"styledLinkInDown"} to={'/malfunctions/add'}>
                         <div>Zgłoś awarie</div>
                     </Link>
-                    <Link className={"styledLink"}  to={'/malfunctions'}>
+                    <Link className={"styledLinkInDown"}  to={'/malfunctions'}>
                         <div>Awarie</div>
                     </Link>
-                    <Link className={"styledLink"}  to={'/my-malfunctions'}>
+                    <Link className={"styledLinkInDown"}  to={'/my-malfunctions'}>
                         <div>Moje zgłoszenia</div>
                     </Link>
-                    <Link className={"styledLink"}  to={'/specialists'}>
+                    <Link className={"styledLinkInDown"}  to={'/specialists'}>
                         <div>Specjaliści</div>
                     </Link>
-                    <Link className={"styledLink"}  to={'/my-jobs'}>
+                    <Link className={"styledLinkInDown"}  to={'/my-jobs'}>
                         <div>Moje zlecenia</div>
                     </Link>
-                    <Link className={"styledLink"}  to={'/my-account'}>
+                    <Link className={"styledLinkInDown"}  to={'/my-account'}>
                         <div>Konto</div>
                     </Link>
                 </div>

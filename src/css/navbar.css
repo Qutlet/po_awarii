@@ -68,6 +68,10 @@
     text-transform:capitalze;
 }
 
+.dropdown {
+    display: none;
+}
+
 .dropdown-content {
     display: none;
     position: absolute;
@@ -89,4 +93,36 @@
 
 .dropdown:hover > .dropdown-content {
     display: block;
+}
+
+.styledLinkInDown {
+    display: none;
+    text-decoration: none;
+    color: white;
+}
+.styledLinkInDown:focus :hover :focus :hover :visited :link :active {
+    text-decoration: none;
+}
+.styledLinkInDown:hover {
+    color: black;
+}
+
+@media screen and (max-width: 1200px){
+    .dropdown {
+        display: block;
+    }
+    .styledLinkInDown {
+        display: block;
+        text-decoration: none;
+        color: white;
+    }
+    .styledLinkInDown:focus :hover :focus :hover :visited :link :active {
+        text-decoration: none;
+    }
+    .styledLinkInDown:hover {
+        color: black;
+    }
+    .styledLink {
+        display: none;
+    }
 }

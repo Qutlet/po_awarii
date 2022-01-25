@@ -89,7 +89,7 @@ export default class SpecialistDetails extends Component{
                                         display: "flex",
                                         alignItems: "center"
                                     }}>
-                                        <img src={url} alt="alternatetext"
+                                        <img className={"profile_photo_spec"} src={url} alt="alternatetext"
                                              style={{
                                                  borderColor: "gold",
                                                  width: "10%",
@@ -107,17 +107,8 @@ export default class SpecialistDetails extends Component{
                             </div>
                         </div>
                         <div className="col-md-8">
-                            <div className="specCard mb-3" style={{flexDirection: "row"}}>
-                                <div className="specCard-body" style={{
-                                    borderStyle: "solid",
-                                    borderColor: "white",
-                                    borderWidth: "thick",
-                                    borderRightColor: "gold",
-                                    borderBottomColor: "gold",
-                                    minWidth: "25%",
-                                    maxWidth: "40%",
-                                    height: "fit-content"
-                                }}>
+                            <div className="specCard mb-3 account-v2">
+                                <div className="specCard-body specCard-body-v2">
                                     <div style={{
                                         display : "flex",
                                         flexWrap: "wrap",
@@ -217,11 +208,7 @@ export default class SpecialistDetails extends Component{
                                         <button>kontkt</button>
                                     </div>
                                 </div>
-                                <div className="specCard-body" style={{
-                                    borderWidth: "thick",
-                                    borderStyle: "solid",
-                                    borderColor: "white",
-                                    borderLeftColor: "gold"}}>
+                                <div className="specCard-body specCard-body-v3">
                                     <div style={{
                                         display : "flex",
                                         flexWrap: "wrap",
