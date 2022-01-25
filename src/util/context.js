@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 
 const ProductContext = React.createContext();
+
+const developPath = "http://localhost:8080";
 //Provider
 //Consumer
 

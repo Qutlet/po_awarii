@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {Link} from 'react-router-dom';
 import styled from 'styled-components'
 import UserStorage from "./UserStorage";
+import "../css/navbar.css"
 
 export default class NavigationBar extends Component{
     constructor(props) {
@@ -16,49 +17,72 @@ export default class NavigationBar extends Component{
 
     notLogIn = () => {
         return (
-            <NavWrapper className="nav-bar">
+            <nav className="navWrapper">
                 <Link to= '/register'>
-                    <NavButtonRegister>
+                    <div className={"navButtonRegister"}>
                         Zarejestruj
-                    </NavButtonRegister>
+                    </div>
                 </Link>
                 <Link to= '/login'>
-                    <NavButtonLogin>
+                    <div className={"navButtonLogin"}>
                         Zaloguj
-                    </NavButtonLogin>
+                    </div>
                 </Link>
-            </NavWrapper>
+            </nav>
 
         );
     }
 
     specRender = () => {
         return (
-        <NavWrapper className="nav-bar">
-            <StyledLink to={'/malfunctions/add'}>
-                <NavItem>Zgłoś awarie</NavItem>
-            </StyledLink>
-            <StyledLink to={'/malfunctions'}>
-                <NavItem>Awarie</NavItem>
-            </StyledLink>
-            <StyledLink to={'/my-malfunctions'}>
-                <NavItem>Moje zgłoszenia</NavItem>
-            </StyledLink>
-            <StyledLink to={'/specialists'}>
-                <NavItem>Specjaliści</NavItem>
-            </StyledLink>
-            <StyledLink to={'/my-jobs'}>
-                <NavItem>Moje zlecenia</NavItem>
-            </StyledLink>
-            <StyledLink to={'/my-account'}>
-                <NavItem>Konto</NavItem>
-            </StyledLink>
-            <Link to= '/login'>
-                <NavButtonLogin onClick={this.logout}>
-                    Wyloguj
-                </NavButtonLogin>
+        <nav className="navWrapper">
+            <div className={"dropdown"}>
+                <h1>O</h1>
+                <div className="dropdown-content">
+                    <Link className={"styledLink"} to={'/malfunctions/add'}>
+                        <div>Zgłoś awarie</div>
+                    </Link>
+                    <Link className={"styledLink"}  to={'/malfunctions'}>
+                        <div>Awarie</div>
+                    </Link>
+                    <Link className={"styledLink"}  to={'/my-malfunctions'}>
+                        <div>Moje zgłoszenia</div>
+                    </Link>
+                    <Link className={"styledLink"}  to={'/specialists'}>
+                        <div>Specjaliści</div>
+                    </Link>
+                    <Link className={"styledLink"}  to={'/my-jobs'}>
+                        <div>Moje zlecenia</div>
+                    </Link>
+                    <Link className={"styledLink"}  to={'/my-account'}>
+                        <div>Konto</div>
+                    </Link>
+                </div>
+            </div>
+            <Link className={"styledLink"} to={'/malfunctions/add'}>
+                <div className={"navItem"}>Zgłoś awarie</div>
             </Link>
-        </NavWrapper>
+            <Link className={"styledLink"}  to={'/malfunctions'}>
+                <div className={"navItem"}>Awarie</div>
+            </Link>
+            <Link className={"styledLink"}  to={'/my-malfunctions'}>
+                <div className={"navItem"}>Moje zgłoszenia</div>
+            </Link>
+            <Link className={"styledLink"}  to={'/specialists'}>
+                <div className={"navItem"}>Specjaliści</div>
+            </Link>
+            <Link className={"styledLink"}  to={'/my-jobs'}>
+                <div className={"navItem"}>Moje zlecenia</div>
+            </Link>
+            <Link className={"styledLink"}  to={'/my-account'}>
+                <div className={"navItem"}>Konto</div>
+            </Link>
+            <Link to= '/login'>
+                <div className={"navButtonLogin"} onClick={this.logout}>
+                    Wyloguj
+                </div>
+            </Link>
+        </nav>
         )
     }
 
