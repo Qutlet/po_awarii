@@ -33,7 +33,10 @@ export default class Message extends Component {
     }
 
     sendMessage = (obj) => {
-        console.log(obj.target.content.value)
+        obj.preventDefault()
+        if (obj.target.content.value === "") {
+            return;
+        }
         const senderId = this.props.userdata.userId;
         const recipientId = this.props.match.params.recipientId
         axios.post("https://po-awarii.herokuapp.com/messages?sender=" + senderId + "&recipient=" + recipientId, {
@@ -49,14 +52,14 @@ export default class Message extends Component {
         return this.state.messages.map(message => {
             if (message.sender === this.props.userdata.userId) {
                 return (
-                    <div style={{textAlign: "right", display: "flex", flexDirection: "column"}}>
+                    <div className={"own-message"}>
                         <span style={{fontSize: "0.5em"}}>{message.creationTime}</span>
                         <span style={{fontSize: "1em"}}>{message.content}</span>
                     </div>
                 )
             } else {
                 return (
-                    <div style={{textAlign: "left", display: "flex", flexDirection: "column"}}>
+                    <div className={"received-message"}>
                         <span style={{fontSize: "0.5em"}}>{message.creationTime}</span>
                         <span style={{fontSize: "1em"}}>{message.content}</span>
                     </div>
@@ -68,7 +71,7 @@ export default class Message extends Component {
 
     render() {
         return (
-            <div>
+            <div className={"parentMessages"}>
                 <div style={{textAlign: "center"}}>
                     <h1>Wiadomosci</h1>
                 </div>
