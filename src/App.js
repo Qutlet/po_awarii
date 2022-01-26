@@ -15,6 +15,7 @@ import CreateSpecialistProfile from "./specialistProfile/CreateSpecialistProfile
 import Account from "./user/Account";
 import MyMalfunctions from "./malfunction/MyMalfunctions";
 import MyJobs from "./specialistProfile/MyJobs";
+import Message from "./util/Message";
 
 class App extends Component{
 
@@ -50,6 +51,8 @@ class App extends Component{
                     !UserStorage.isLoggedIn() ? (<Redirect to="/login"/>) : (<MyJobs {...props} userdata={UserStorage} />) )}/>
                 <Route exact path={"/my-malfunctions/:id"} render={(props) => (
                     !UserStorage.isLoggedIn() ? (<Redirect to="/login"/>) : (<MyMalfunctionDetail {...props} userdata={UserStorage} />) )}/>
+                <Route exact path={"/messages/:recipientId"} render={(props) => (
+                    !UserStorage.isLoggedIn() ? (<Redirect to="/login"/>) : (<Message {...props} userdata={UserStorage} />) )}/>
             </Switch>
 
         </React.Fragment>

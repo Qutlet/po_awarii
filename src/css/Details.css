@@ -164,6 +164,10 @@
     right: 0;
 }
 
+.helpKontakt {
+    width: 100%;
+}
+
 .login-swap {
     text-align: center;
 }
@@ -330,5 +334,34 @@ div.desc {
         flex-direction: column;
     }
 
+    .intrested {
+        display: inline-block;
+        border-radius: 4px;
+        background-color: gold;
+        border: none;
+        color: black;
+        text-align: center;
+        font-size: 28px;
+        padding: 20px;
+        width: 60%;
+        transition: all 0.5s;
+        cursor: pointer;
+        margin: 10px;
+    }
+
+    .kontakt {
+        display: inline-block;
+        border-radius: 4px;
+        background-color: gold;
+        border: none;
+        color: black;
+        text-align: center;
+        font-size: 28px;
+        padding: 20px;
+        width: 50%;
+        transition: all 0.5s;
+        cursor: pointer;
+        margin: 10px;
+    }
 }
 

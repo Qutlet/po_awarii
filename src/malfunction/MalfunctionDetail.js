@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import axios from "axios";
 import "../css/Details.css"
 import UserStorage from "../util/UserStorage";
+import {Link} from "react-router-dom";
 
 export default class MalfunctionDetail extends Component{
     constructor(props) {
@@ -131,9 +132,16 @@ export default class MalfunctionDetail extends Component{
                         }} className="text-title text uppercas text mudted mt-3 mb-2">
                             <span className="text-uppercase">Adres email: {this.state.malfunction.email}</span>
                         </h4>
-                        <button className={'kontakt'} >
-                            <span>Kontakt</span>
-                        </button>
+                        <Link to={{
+                            pathname: '/messages/' + this.state.malfunction.creatorId ,
+                            state: {
+                                creatorId: this.state.malfunction.creatorId
+                            }
+                        }}>
+                            <button className={"kontakt"}>
+                                <span>Kontakt</span>
+                            </button>
+                        </Link>
                         {this.intrested()}
                     </div>
                 </div>

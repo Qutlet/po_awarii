@@ -7,7 +7,7 @@ export default class AddMalfunction extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            catTmp : [{id:0 ,name : "Awaria Hydrauliczna"}, {id:1 ,name :"Awaria elektryczna"}],
+            catTmp : [],
             catValueTmp : 0,
             cat: [],
         }
@@ -16,6 +16,16 @@ export default class AddMalfunction extends Component {
         this.processCategory = this.processCategory.bind(this);
         this.categoryList = this.categoryList.bind(this);
         this.addCategory = this.addCategory.bind(this)
+    }
+
+    componentDidMount() {
+        axios.get("https://po-awarii.herokuapp.com/category",{ headers : {
+                'Authorization' : 'Token ' + this.props.userdata.token
+            }}).then(r => {
+            this.setState({
+                catTmp: r.data
+            })
+        });
     }
 
     processSubmit = (obj) => {

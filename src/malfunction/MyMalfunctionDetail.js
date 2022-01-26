@@ -119,7 +119,16 @@ export default class MyMalfunctionDetail extends Component {
                     </div>
                     <div>
                         <button onClick={() => this.deleteSpec(specialists.id)}>Odrzuć</button>
-                        <button onClick={() => this.chat(specialists.id)}>Kontakt</button>
+                        <Link to={{
+                            pathname: '/messages/' + specialists.userId ,
+                            state: {
+                                creatorId: specialists.userId
+                            }
+                        }}>
+                            <button className={'kontakt'} >
+                                <span>Kontakt</span>
+                            </button>
+                        </Link>
                         <button onClick={() => this.chooseSpec(specialists.userId)}>Wybierz</button>
                     </div>
                 </div>
@@ -154,7 +163,16 @@ export default class MyMalfunctionDetail extends Component {
                             </div>
                             <div>
                                 <button onClick={() => this.endWork()}>Zakończ</button>
-                                <button onClick={() => this.chat(this.state.specialist.id)}>Kontakt</button>
+                                <Link to={{
+                                    pathname: '/messages/' + this.state.specialist.userId ,
+                                    state: {
+                                        creatorId: this.state.specialist.userId
+                                    }
+                                }}>
+                                    <button className={'kontakt'} >
+                                        <span>Kontakt</span>
+                                    </button>
+                                </Link>
                             </div>
                         </div>
                     </div>
@@ -203,9 +221,16 @@ export default class MyMalfunctionDetail extends Component {
                                     <h4>{this.state.specialist.customProfileName}: {this.state.specialist.firstName} {this.state.specialist.lastName}</h4>
                                 </Link>
                             </div>
-                            <div>
-                                <button onClick={() => this.chat(this.state.specialist.id)}>Kontakt</button>
-                            </div>
+                            <Link to={{
+                                pathname: '/messages/' + this.state.specialist.userId ,
+                                state: {
+                                    creatorId: this.state.specialist.userId
+                                }
+                            }}>
+                                <button className={'kontakt'} >
+                                    <span>Kontakt</span>
+                                </button>
+                            </Link>
                         </div>
                     </div>
                 </div>

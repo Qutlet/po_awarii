@@ -3,6 +3,7 @@ import axios from "axios";
 import "../css/Details.css"
 import UserStorage from "../util/UserStorage";
 import PhotoObject from "../util/PhotoObject";
+import {Link} from "react-router-dom";
 
 export default class SpecialistDetails extends Component{
     constructor(props) {
@@ -205,7 +206,16 @@ export default class SpecialistDetails extends Component{
 
                                     </div>
                                     <div>
-                                        <button>kontkt</button>
+                                        <Link to={{
+                                            pathname: '/messages/' + this.state.specialist.userId ,
+                                            state: {
+                                                creatorId: this.state.specialist.userId
+                                            }
+                                        }}>
+                                            <button className={'kontakt helpKontakt'}>
+                                                <span>Kontakt</span>
+                                            </button>
+                                        </Link>
                                     </div>
                                 </div>
                                 <div className="specCard-body specCard-body-v3">
