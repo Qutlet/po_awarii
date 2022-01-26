@@ -138,7 +138,7 @@ export default class MalfunctionDetail extends Component{
                                 creatorId: this.state.malfunction.creatorId
                             }
                         }}>
-                            <button>
+                            <button className={"kontakt"}>
                                 <span>Kontakt</span>
                             </button>
                         </Link>

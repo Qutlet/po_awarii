@@ -212,9 +212,10 @@ export default class SpecialistDetails extends Component{
                                                 creatorId: this.state.specialist.userId
                                             }
                                         }}>
-                                            <button>Kontakt</button>
+                                            <button className={'kontakt helpKontakt'}>
+                                                <span>Kontakt</span>
+                                            </button>
                                         </Link>
-
                                     </div>
                                 </div>
                                 <div className="specCard-body specCard-body-v3">

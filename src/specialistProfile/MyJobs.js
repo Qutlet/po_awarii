@@ -87,7 +87,16 @@ export default class MyJobs extends Component {
                                     </p>
                                 </div>
                                 <div>
-                                    <button>Kontakt</button>
+                                    <Link to={{
+                                        pathname: '/messages/' + malfunctions.creatorId ,
+                                        state: {
+                                            creatorId: malfunctions.creatorId
+                                        }
+                                    }}>
+                                        <button className={'kontakt'} >
+                                            <span>Kontakt</span>
+                                        </button>
+                                    </Link>
                                     <button>Zrezygnuj</button>
                                 </div>
                             </div>
@@ -137,7 +146,16 @@ export default class MyJobs extends Component {
                                         </p>
                                     </div>
                                     <div>
-                                        <button>Kontakt</button>
+                                        <Link to={{
+                                            pathname: '/messages/' + malfunctions.creatorId ,
+                                            state: {
+                                                creatorId: malfunctions.creatorId
+                                            }
+                                        }}>
+                                            <button className={'kontakt'} >
+                                                <span>Kontakt</span>
+                                            </button>
+                                        </Link>
                                     </div>
                                 </div>
                             </Link>
@@ -182,7 +200,16 @@ export default class MyJobs extends Component {
                                     </p>
                                 </div>
                                 <div>
-                                    <button>Kontakt</button>
+                                    <Link to={{
+                                        pathname: '/messages/' + malfunctions.creatorId ,
+                                        state: {
+                                            creatorId: malfunctions.creatorId
+                                        }
+                                    }}>
+                                        <button className={'kontakt'} >
+                                            <span>Kontakt</span>
+                                        </button>
+                                    </Link>
                                 </div>
                             </div>
                         </Link>
