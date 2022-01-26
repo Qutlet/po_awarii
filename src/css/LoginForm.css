@@ -93,6 +93,7 @@ body{
         border-color: gold;
         background: gold;
         font-size: 20px;
+        width: 75%;
     }
 
     .login-button {
@@ -107,5 +108,6 @@ body{
         transition: all 0.5s;
         cursor: pointer;
         margin: 10px;
+        width: 50%;
     }
 }

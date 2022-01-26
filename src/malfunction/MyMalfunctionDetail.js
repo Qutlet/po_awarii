@@ -119,7 +119,16 @@ export default class MyMalfunctionDetail extends Component {
                     </div>
                     <div>
                         <button onClick={() => this.deleteSpec(specialists.id)}>Odrzuć</button>
-                        <button onClick={() => this.chat(specialists.id)}>Kontakt</button>
+                        <Link to={{
+                            pathname: '/messages/' + specialists.userId ,
+                            state: {
+                                creatorId: specialists.userId
+                            }
+                        }}>
+                            <button className={'kontakt'} >
+                                <span>Kontakt</span>
+                            </button>
+                        </Link>
                         <button onClick={() => this.chooseSpec(specialists.userId)}>Wybierz</button>
                     </div>
                 </div>
