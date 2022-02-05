@@ -1,6 +1,7 @@
 import {Component} from "react";
 import CategoryChooser from "../Category/CategoryChooser"
 import axios from "axios";
+import "../css/days.css"
 
 export default class CreateSpecialistProfile extends Component {
     constructor(props) {
@@ -48,7 +49,8 @@ export default class CreateSpecialistProfile extends Component {
                 'Authorization' : 'Token ' + this.props.userdata.token
             }}).then(r => {
             this.setState({
-                catTmp: r.data
+                catTmp: r.data,
+                catValueTmp: r.data[0].name
             })
         });
     }
@@ -83,21 +85,30 @@ export default class CreateSpecialistProfile extends Component {
 
     addCategory = (obj) => {
         obj.preventDefault()
-        let cat = this.state.catTmp[this.state.catValueTmp];
+        let cat = this.state.catValueTmp;
         let catArray = this.state.cat;
         if (catArray.includes(cat)){
             return;
         }
-        catArray.push(cat.name)
+        catArray.push(cat)
         this.setState({
             cat: catArray
         })
     }
 
     processSubmit = (obj) => {
-        obj.preventDefault()
+         obj.preventDefault()
+        let dayArray = [
+            obj.target.day1.checked,
+            obj.target.day2.checked,
+            obj.target.day3.checked,
+            obj.target.day4.checked,
+            obj.target.day5.checked,
+            obj.target.day6.checked,
+            obj.target.day7.checked
+        ]
         console.debug("creating spec profile...")
-        axios.post('https://po-awarii.herokuapp.com/specProfile/create' ,{
+        axios.post( 'https://po-awarii.herokuapp.com/specProfile/create' ,{
             firstName: obj.target.firstName.value,
             lastName: obj.target.lastName.value,
             categories: this.state.cat,
@@ -105,7 +116,8 @@ export default class CreateSpecialistProfile extends Component {
             phoneNumber: obj.target.phone.value,
             email: obj.target.email.value,
             location: obj.target.location.value,
-            description: obj.target.description.value
+            description: obj.target.description.value,
+            deadlinesDayUsage: dayArray
         },{
             headers : {
                 'Authorization' : 'Token ' + this.props.userdata.token
@@ -152,8 +164,28 @@ export default class CreateSpecialistProfile extends Component {
                                placeholder="E-mail"/>
 
                         <label htmlFor="fname" style={this.labelStyle()}>Opis</label>
-                        <input type="text" style={this.inputStyle()} id="fname" name="description"
+                        <textarea style={this.inputStyle()} id="fname" name="description"
                                placeholder="Opis"/>
+
+                        <div className={"dni"}>
+                            <h4>Wybierz dni pracy</h4>
+                            <input type="checkbox" id="day1" name="day1" value="pon" />
+                            <label htmlFor={"day1"}>Poniedziałek</label>
+                            <input type="checkbox" id="day2" name="day2" value="Bike" />
+                            <label htmlFor={"day2"}>Wtorek</label>
+                            <input type="checkbox" id="day3" name="day3" value="Bike" />
+                            <label htmlFor={"day3"}>Środa</label>
+                            <input type="checkbox" id="day4" name="day4" value="Bike" />
+                            <label htmlFor={"day4"}>Czwartek</label>
+                            <input type="checkbox" id="day5" name="day5" value="Bike" />
+                            <label htmlFor={"day5"}>Piątek</label>
+                            <input type="checkbox" id="day6" name="day6" value="Bike" />
+                            <label htmlFor={"day6"}>Sobota</label>
+                            <input type="checkbox" id="day7" name="day7" value="Bike" />
+                            <label htmlFor={"day7"}>Niedziela</label>
+                        </div>
+
+
 
                         <label htmlFor="fname" style={{
                             width: "81.05%",
@@ -174,6 +206,7 @@ export default class CreateSpecialistProfile extends Component {
                         }}>
                             Wybierz swoje specjalizacje
                             <select style={this.inputStyle()} value={this.state.catValueTmp} onChange={this.processCategory}>
+                                <option disabled selected value>Wybierz kategorie</option>
                                 {this.state.catTmp.map(cat =>
                                     <option value={cat.name} key={cat.id}>{cat.name}</option>
                                 )}

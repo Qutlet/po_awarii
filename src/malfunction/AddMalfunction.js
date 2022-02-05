@@ -56,12 +56,12 @@ export default class AddMalfunction extends Component {
 
     addCategory = (obj) => {
         obj.preventDefault()
-        let cat = this.state.catTmp[this.state.catValueTmp];
+        let cat = this.state.catValueTmp;
         let catArray = this.state.cat;
-        if (catArray.includes(cat.name)){
+        if (catArray.includes(cat)){
             return;
         }
-        catArray.push(cat.name)
+        catArray.push(cat)
         this.setState({
             cat: catArray
         })
@@ -123,7 +123,7 @@ export default class AddMalfunction extends Component {
                                placeholder="Podaj nazwę awarii"/>
 
                         <label htmlFor="fname" style={this.labelStyle()}>Opis:</label>
-                        <input type="text" style={this.inputStyle()} id="fname" name="description"
+                        <textarea style={this.inputStyle()} id="fname" name="description"
                                placeholder="Podaj opis awarii"/>
 
                         <label htmlFor="fname" style={this.labelStyle()}>Miejsce awarii:</label>
@@ -158,7 +158,7 @@ export default class AddMalfunction extends Component {
                             Dodaj kategorie swojej awarii
                             <select style={this.inputStyle()} value={this.state.catValueTmp} onChange={this.processCategory}>
                                 {this.state.catTmp.map(cat =>
-                                    <option value={cat.id} key={cat.id}>{cat.name}</option>
+                                    <option value={cat.name} key={cat.id}>{cat.name}</option>
                                 )}
                             </select>
                             <button style={this.buttonStyle()} onClick={this.addCategory}>Dodaj</button>
