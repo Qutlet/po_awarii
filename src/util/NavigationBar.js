@@ -88,28 +88,48 @@ export default class NavigationBar extends Component{
 
     logIn = () => {
         return (
-            <NavWrapper className="nav-bar">
-                <StyledLink to={'/malfunctions/add'}>
-                    <NavItem>Zgłoś awarie</NavItem>
-                </StyledLink>
-                <StyledLink to={'/my-malfunctions'}>
-                    <NavItem>Moje zgłoszenia</NavItem>
-                </StyledLink>
-                <StyledLink to={'/specialists'}>
-                    <NavItem>Specjaliści</NavItem>
-                </StyledLink>
-                <StyledLink to={'/create/specialist'}>
-                    <NavItem>Jestem specjalistą</NavItem>
-                </StyledLink>
-                <StyledLink to={'/my-account'}>
-                    <NavItem>Konto</NavItem>
-                </StyledLink>
-                <Link to= '/login'>
-                    <NavButtonLogin onClick={this.logout}>
-                        Wyloguj
-                    </NavButtonLogin>
+            <nav className="navWrapper">
+                <div className={"dropdown"}>
+                    <img style={{width: "40px"}} src={"menu.png"}  alt={"menu"}/>
+                    <div className="dropdown-content">
+                        <Link className={"styledLinkInDown"} to={'/malfunctions/add'}>
+                            <div>Zgłoś awarie</div>
+                        </Link>
+                        <Link className={"styledLinkInDown"}  to={'/my-malfunctions'}>
+                            <div>Moje zgłoszenia</div>
+                        </Link>
+                        <Link className={"styledLinkInDown"}  to={'/specialists'}>
+                            <div>Specjaliści</div>
+                        </Link>
+                        <Link className={"styledLinkInDown"}  to={'/create/specialist'}>
+                            <div>Jestem specjalistą</div>
+                        </Link>
+                        <Link className={"styledLinkInDown"}  to={'/my-account'}>
+                            <div>Konto</div>
+                        </Link>
+                    </div>
+                </div>
+                <Link className={"styledLink"}  to={'/malfunctions/add'}>
+                    <div className={"navItem"}>Zgłoś awarie</div>
                 </Link>
-            </NavWrapper>
+                <Link className={"styledLink"}  to={'/my-malfunctions'}>
+                    <div className={"navItem"}>Moje zgłoszenia</div>
+                </Link>
+                <Link className={"styledLink"}  to={'/specialists'}>
+                    <div className={"navItem"}>Specjaliści</div>
+                </Link>
+                <Link className={"styledLink"}  to={'/create/specialist'}>
+                    <div className={"navItem"}>Jestem specjalistą</div>
+                </Link>
+                <Link className={"styledLink"}  to={'/my-account'}>
+                    <div className={"navItem"}>Konto</div>
+                </Link>
+                <Link to= '/login'>
+                    <div className={"navButtonLogin"} onClick={this.logout}>
+                        Wyloguj
+                    </div>
+                </Link>
+            </nav>
         )
     }
 
