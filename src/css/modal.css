@@ -26,3 +26,39 @@
 .display-none {
     display: none;
 }
+
+.innerCard {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    background-color: gold;
+    border: solid;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+.innerCard button {
+    margin-left: 25%;
+    background-color: transparent;
+    margin-right: 25%;
+}
+
+.usableCard {
+    padding: 10px;
+}
+
+.nonUsableCard {
+    background-color: #202124;
+    color: white;
+    margin-left: 25%;
+    margin-right: 25%;
+    text-align: center;
+}
+
+
+
+.upperCard{
+    overflow-y: scroll;
+    max-height: 500px;
+}
+

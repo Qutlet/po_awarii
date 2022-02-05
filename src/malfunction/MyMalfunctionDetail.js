@@ -2,17 +2,36 @@ import React, {Component} from "react";
 import axios from "axios";
 import UserStorage from "../util/UserStorage";
 import {Link} from "react-router-dom";
+import CategoryChooser from "../Category/CategoryChooser";
+import DeadlineChooser from "./DeadlineChooser";
 
 export default class MyMalfunctionDetail extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            show: false,
             id:  this.props.match.params.id,
             malfunction: {},
             specialists: [],
             specialist: {}
         }
+        this.showModal = this.showModal.bind(this);
+        this.hideModal = this.hideModal.bind(this);
     }
+
+    showModal = () => {
+        this.setState({ show: true });
+    };
+
+    hideModal = () => {
+        this.setState({ show: false });
+    };
+
+    handleSubmit = (obj) => {
+        obj.preventDefault()
+        this.chooseSpec(obj.target.id)
+        this.setState({ show: false });
+    };
 
     componentDidMount() {
         const specialists = this.state.specialists;
@@ -72,7 +91,7 @@ export default class MyMalfunctionDetail extends Component {
     }
 
     chooseSpec = (id) => {
-        axios.put("https://po-awarii.herokuapp.com/malfunctions/malfunction/" + this.state.id + "/specialist/" + id + "/chosen", {}, {
+        axios.put("https://po-awarii.herokuapp.com/malfunctions/malfunction/" + this.state.id + "/deadline/" + id + "/chosen", {}, {
             headers: {
                 'Authorization': 'Token ' + this.props.userdata.token
             }
@@ -105,6 +124,7 @@ export default class MyMalfunctionDetail extends Component {
         }
 
         return this.state.specialists.map(specialists => {
+            console.log(specialists)
             return (
                 <div style={{display: "flex",justifyContent: "space-between"}}>
                     <div>
@@ -125,11 +145,16 @@ export default class MyMalfunctionDetail extends Component {
                                 creatorId: specialists.userId
                             }
                         }}>
-                            <button className={'kontakt'} >
+                            <button>
                                 <span>Kontakt</span>
                             </button>
                         </Link>
-                        <button onClick={() => this.chooseSpec(specialists.userId)}>Wybierz</button>
+                        <DeadlineChooser show={this.state.show} handleClose={this.hideModal} token={this.props.userdata.token} handleSubmit={this.handleSubmit} data={specialists.deadlineList}>
+                        </DeadlineChooser>
+                        <button type="button" onClick={this.showModal}>
+                            Wybierz
+                        </button>
+                        {/*<button onClick={() => this.chooseSpec(specialists.userId)}>Wybierz</button>*/}
                     </div>
                 </div>
             )
