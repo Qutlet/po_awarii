@@ -19,7 +19,7 @@ export default class AddMalfunction extends Component {
     }
 
     componentDidMount() {
-        axios.get("https://po-awarii.herokuapp.com/category",{ headers : {
+        axios.get(process.env.REACT_APP_SERVER + '/category',{ headers : {
                 'Authorization' : 'Token ' + this.props.userdata.token
             }}).then(r => {
             this.setState({
@@ -31,7 +31,7 @@ export default class AddMalfunction extends Component {
     processSubmit = (obj) => {
         obj.preventDefault()
         console.debug("creating malfunction...")
-        axios.post('https://po-awarii.herokuapp.com/malfunctions/create' ,{
+        axios.post(process.env.REACT_APP_SERVER + '/malfunctions/create' ,{
             name: obj.target.name.value,
             description: obj.target.description.value,
             categories: this.state.cat,

@@ -7,7 +7,7 @@ export default class PhotoObject extends Component {
         const {name} = this.props.photo;
         let url;
         if(name) {
-            url = "https://po-awarii.herokuapp.com/file/download/" + name;
+            url = process.env.REACT_APP_SERVER + '/file/download/' + name;
         } else {
             url = "default_profile.png"
         }

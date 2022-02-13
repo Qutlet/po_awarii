@@ -32,22 +32,36 @@ export class RegisterForm extends Component {
         });
     }
 
+
     register() {
         this.setState({
             buttonDisabled:true
         })
-        axios.post('https://po-awarii.herokuapp.com/registration', {
+        axios.post(process.env.REACT_APP_SERVER + '/registration', {
             firstName: this.state.firstName,
             lastName: this.state.lastName,
             password: this.state.password,
             matchingPassword: this.state.mPassword,
             email: this.state.email
         }).then((response) => {
-            this.props.history.push('/');
+            this.props.history.push('/login');
             window.location.reload(false);
         }).catch((error) => {
-            console.error(error.response.data.fieldErrors);
-            alert(error.response.data.message)
+            if (error.response.data.fieldErrors) {
+                if (error.response.data.fieldErrors[0].defaultMessage === 'nie może być puste') {
+                    this.setState({
+                        error: 'Pole ' + error.response.data.fieldErrors[0].defaultMessage
+                    })
+                } else {
+                    this.setState({
+                        error: error.response.data.fieldErrors[0].defaultMessage
+                    })
+                }
+            } else if (error.response) {
+                this.setState({
+                    error: error.response.data
+                })
+            }
         });
         this.resetForm();
     }
@@ -133,7 +147,6 @@ export class RegisterForm extends Component {
                             <div className={"login-swap"}>Posiadam konto</div>
                         </Link>
                     </div>
-                    <div>{this.state.error}</div>
                 </div>
             </React.Fragment>
         )

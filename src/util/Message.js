@@ -23,7 +23,7 @@ export default class Message extends Component {
     refreshMessages = () => {
         const senderId = this.props.userdata.userId;
         const recipientId = this.props.match.params.recipientId
-        axios.get("https://po-awarii.herokuapp.com/messages?sender=" + senderId + "&recipient=" + recipientId, { headers : {
+        axios.get(process.env.REACT_APP_SERVER + '/messages?sender=' + senderId + '&recipient=' + recipientId, { headers : {
                 'Authorization' : 'Token ' + this.props.userdata.token
             }}).then(r => {
             this.setState({
@@ -39,7 +39,7 @@ export default class Message extends Component {
         }
         const senderId = this.props.userdata.userId;
         const recipientId = this.props.match.params.recipientId
-        axios.post("https://po-awarii.herokuapp.com/messages?sender=" + senderId + "&recipient=" + recipientId, {
+        axios.post(process.env.REACT_APP_SERVER + '/messages?sender=' + senderId + '&recipient=' + recipientId, {
             message: obj.target.content.value
         },{ headers : {
                 'Authorization' : 'Token ' + this.props.userdata.token

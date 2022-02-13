@@ -25,8 +25,8 @@ export default class SpecialistList extends Component {
     }
 
     componentDidMount = () => {
-       // axios.get('https://po-awarii.herokuapp.com/specProfile/cat/all', {
-        axios.get('https://po-awarii.herokuapp.com/test/specProfile', {   headers: {
+       // axios.get(process.env.REACT_APP_SERVER + '/specProfile/cat/all', {
+        axios.get(process.env.REACT_APP_SERVER + '/test/specProfile', {   headers: {
                 'Authorization': 'Token ' + this.props.userdata.token
             }
         })

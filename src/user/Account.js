@@ -50,7 +50,7 @@ export default class Account extends Component {
             )
         }
         return this.state.specialist.photos.map(photo => {
-            let url = "https://po-awarii.herokuapp.com/file/download/" + photo;
+            let url = process.env.REACT_APP_SERVER + '/file/download' + photo;
             return (
                 <div className="gallery">
                     <img src={url} width="100" height="100" alt={"photo"}/>
@@ -60,7 +60,7 @@ export default class Account extends Component {
     }
 
     componentDidMount() {
-        axios.get("https://po-awarii.herokuapp.com/users/get/me", {
+        axios.get(process.env.REACT_APP_SERVER + '/users/get/me', {
             headers: {
                 'Authorization': 'Token ' + this.props.userdata.token
             }
@@ -70,7 +70,7 @@ export default class Account extends Component {
                 userInfo: r.data
             })
 
-            axios.get("https://po-awarii.herokuapp.com/specProfile/user/" + this.state.userInfo.id, {
+            axios.get(process.env.REACT_APP_SERVER + '/specProfile/user/' + this.state.userInfo.id, {
                 headers: {
                     'Authorization': 'Token ' + this.props.userdata.token
                 }
@@ -130,7 +130,7 @@ export default class Account extends Component {
             return;
         }
         const newPhone = document.getElementById('editPhone2').value;
-        axios.put("https://po-awarii.herokuapp.com/users?userID=" + userId, {
+        axios.put(process.env.REACT_APP_SERVER + '/users?userID=' + userId, {
                 firstName: newName,
                 lastName: newLastName,
                 email: newEmail,
@@ -167,7 +167,7 @@ export default class Account extends Component {
             alert("Hasla nie są takie same")
             return;
         }
-        axios.put("https://po-awarii.herokuapp.com/users/password?userID=" + userId,
+        axios.put(process.env.REACT_APP_SERVER + '/users/password?userID=' + userId,
             {
                 oldPassword: oldPass,
                 password: newPass,
@@ -215,7 +215,7 @@ export default class Account extends Component {
             alert("Opis nie może być pusty")
             return;
         }
-        axios.put("https://po-awarii.herokuapp.com/specProfile/" + specId + "/edit", {
+        axios.put(process.env.REACT_APP_SERVER + '/specProfile/' + specId + '/edit', {
                 customProfileName: newName,
                 description: newDesc,
                 email: newEmail,
@@ -245,7 +245,7 @@ export default class Account extends Component {
             bodyFormData.append("purpose", "SPECIALIST_WORK_PHOTO")
             axios({
                 method: "post",
-                url: "https://po-awarii.herokuapp.com/file/upload",
+                url: process.env.REACT_APP_SERVER + '/file/upload',
                 data: bodyFormData,
                 headers: { "Content-Type": "multipart/form-data" },
             })
@@ -269,7 +269,7 @@ export default class Account extends Component {
             bodyFormData.append("purpose", "USER_PROFILE_PHOTO")
             axios({
                 method: "post",
-                url: "https://po-awarii.herokuapp.com/file/upload",
+                url: process.env.REACT_APP_SERVER + '/file/upload',
                 data: bodyFormData,
                 headers: { "Content-Type": "multipart/form-data" },
             })
@@ -459,7 +459,7 @@ export default class Account extends Component {
         }
         let url;
         if(this.state.userInfo.photo) {
-            url = "https://po-awarii.herokuapp.com/file/download/" + this.state.userInfo.photo;
+            url = process.env.REACT_APP_SERVER + '/file/download/' + this.state.userInfo.photo;
         } else {
             url = "../default_profile.png"
         }
@@ -593,7 +593,7 @@ export default class Account extends Component {
                                                     {/*<input type="text" style={this.inputStyle()} id="fname" name="firstName"*/}
                                                     {/*       placeholder="Imie" value={this.state.userInfo.firstName}/>*/}
                                                 <EditPassword show={this.state.showSecond} handleClose={this.hideModalSecond} handleSubmit={this.handleSubmitSecond} />
-                                                <button style={{width: "50%"}} onClick={this.showModalSecond}>Zmień hasło</button>
+                                                {/*<button style={{width: "50%"}} onClick={this.showModalSecond}>Zmień hasło</button>*/}
                                                 <EditUserModal show={this.state.show} handleClose={this.hideModal} handleSubmit={this.handleSubmit}>
                                                 </EditUserModal>
                                                 <button style={{width: "50%"}} onClick={this.showModal}>Edytuj profil</button>

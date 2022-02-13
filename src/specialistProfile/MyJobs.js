@@ -14,10 +14,17 @@ export default class MyJobs extends Component {
         }
     }
 
+    removeInterested = (id) => {
+        const specId = this.props.userdata.specId;
+        axios.put(process.env.REACT_APP_SERVER + '/malfunctions/malfunction/' + id + '/specialist/' + specId + '/uninterested',{},{  headers: {
+                'Authorization': 'Token ' + this.props.userdata.token
+            }}).then(ignored => {})
+    }
+
     componentDidMount() {
         const specId = this.props.userdata.specId;
         //PENDING
-        axios.get("https://po-awarii.herokuapp.com/malfunctions/specialist/" + specId + "?status=PENDING", {
+        axios.get(process.env.REACT_APP_SERVER + '/malfunctions/specialist/" + specId + "?status=PENDING', {
             headers: {
                 'Authorization': 'Token ' + this.props.userdata.token
             }
@@ -27,7 +34,7 @@ export default class MyJobs extends Component {
             })
         })
         //IN_WORK
-        axios.get("https://po-awarii.herokuapp.com/malfunctions/specialist/" + specId + "?status=IN_WORK", {
+        axios.get(process.env.REACT_APP_SERVER + '/malfunctions/specialist/" + specId + "?status=IN_WORK', {
             headers: {
                 'Authorization': 'Token ' + this.props.userdata.token
             }
@@ -37,7 +44,7 @@ export default class MyJobs extends Component {
             })
         })
         //ENDED
-        axios.get("https://po-awarii.herokuapp.com/malfunctions/specialist/" + specId + "?status=ENDED", {
+        axios.get(process.env.REACT_APP_SERVER + '/malfunctions/specialist/" + specId + "?status=ENDED', {
             headers: {
                 'Authorization': 'Token ' + this.props.userdata.token
             }
@@ -93,11 +100,13 @@ export default class MyJobs extends Component {
                                             creatorId: malfunctions.creatorId
                                         }
                                     }}>
-                                        <button className={'kontakt'} >
+                                        <button >
                                             <span>Kontakt</span>
                                         </button>
                                     </Link>
-                                    <button>Zrezygnuj</button>
+                                    <button onClick={() => {
+                                        this.removeInterested(malfunctions.id)
+                                    }}>Zrezygnuj</button>
                                 </div>
                             </div>
                         </Link>

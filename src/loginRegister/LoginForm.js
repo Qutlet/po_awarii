@@ -14,7 +14,7 @@ export class LoginForm extends Component {
     async login() {
         const email = document.getElementById('logemail').value;
         const pass = document.getElementById('logpass').value;
-        axios.post('https://po-awarii.herokuapp.com/logon',{
+        axios.post(process.env.REACT_APP_SERVER + '/logon',{
             email: email,
             password: pass
         }).then((response) => {
