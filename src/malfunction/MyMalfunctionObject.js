@@ -10,7 +10,7 @@ export default class MyMalfunctionObject extends Component {
     delete = (obj) => {
         obj.preventDefault()
         const id = this.props.myMalfunctionObject.id;
-        axios.delete("https://po-awarii.herokuapp.com/malfunctions/" + id + "/delete", {
+        axios.delete(process.env.REACT_APP_SERVER + '/malfunctions/' + id + '/delete', {
             headers: {
                 'Authorization': 'Token ' + this.props.token
             }
@@ -53,15 +53,15 @@ export default class MyMalfunctionObject extends Component {
                                             </p>
                                         </div>
                                         <div>
-                                            <Link to={{
-                                                pathname: '/my-malfunctions/' + id + '/edit' ,
-                                                state: {
-                                                    id: id
-                                                }
-                                            }}>
-                                                <button>edit</button>
-                                            </Link>
-                                            <button onClick={this.delete}>Delete</button>
+                                            {/*<Link to={{*/}
+                                            {/*    pathname: '/my-malfunctions/' + id + '/edit' ,*/}
+                                            {/*    state: {*/}
+                                            {/*        id: id*/}
+                                            {/*    }*/}
+                                            {/*}}>*/}
+                                            {/*    <button>edit</button>*/}
+                                            {/*</Link>*/}
+                                            <button onClick={this.delete}>Usuń</button>
                                         </div>
                                     </div>
                                 </Link>

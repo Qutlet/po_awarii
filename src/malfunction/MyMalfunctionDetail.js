@@ -36,7 +36,7 @@ export default class MyMalfunctionDetail extends Component {
     componentDidMount() {
         const specialists = this.state.specialists;
         const id = this.state.id;
-        axios.get('https://po-awarii.herokuapp.com/malfunctions/' + id + '/malfunction', {
+        axios.get(process.env.REACT_APP_SERVER + '/malfunctions/' + id + '/malfunction', {
             headers: {
                 'Authorization': 'Token ' + this.props.userdata.token
             }
@@ -45,7 +45,7 @@ export default class MyMalfunctionDetail extends Component {
                 malfunction: r.data
             })
             if (r.data.specialistId) {
-                axios.get('https://po-awarii.herokuapp.com/specProfile/' + r.data.specialistId + '/profile', {
+                axios.get(process.env.REACT_APP_SERVER + '/specProfile/' + r.data.specialistId + '/profile', {
                     headers: {
                         'Authorization': 'Token ' + this.props.userdata.token
                     }
@@ -56,7 +56,7 @@ export default class MyMalfunctionDetail extends Component {
                 })
             }
             for (let i = 0; i < r.data.specialistIds.length; i++) {
-                axios.get('https://po-awarii.herokuapp.com/specProfile/' + r.data.specialistIds[i] + '/profile', {
+                axios.get(process.env.REACT_APP_SERVER + '/specProfile/' + r.data.specialistIds[i] + '/profile', {
                     headers: {
                         'Authorization': 'Token ' + this.props.userdata.token
                     }
@@ -81,7 +81,7 @@ export default class MyMalfunctionDetail extends Component {
     }
 
     deleteSpec = (id) => {
-        axios.put("https://po-awarii.herokuapp.com/malfunctions/malfunction/" + this.state.id + "/specialist/" + id + "/uninterested", {}, {
+        axios.put(process.env.REACT_APP_SERVER + '/malfunctions/malfunction/' + this.state.id + '/specialist/' + id + '/uninterested', {}, {
             headers: {
                 'Authorization': 'Token ' + this.props.userdata.token
             }
@@ -91,7 +91,7 @@ export default class MyMalfunctionDetail extends Component {
     }
 
     chooseSpec = (id) => {
-        axios.put("https://po-awarii.herokuapp.com/malfunctions/malfunction/" + this.state.id + "/deadline/" + id + "/chosen", {}, {
+        axios.put(process.env.REACT_APP_SERVER + '/malfunctions/malfunction/' + this.state.id + '/deadline/' + id + '/chosen', {}, {
             headers: {
                 'Authorization': 'Token ' + this.props.userdata.token
             }
@@ -100,7 +100,7 @@ export default class MyMalfunctionDetail extends Component {
     }
 
     endWork = () => {
-        axios.put("https://po-awarii.herokuapp.com/malfunctions/malfunction/" + this.state.id + "/workEnded", {}, {
+        axios.put(process.env.REACT_APP_SERVER + '/malfunctions/malfunction/' + this.state.id + '/workEnded', {}, {
             headers: {
                 'Authorization': 'Token ' + this.props.userdata.token
             }

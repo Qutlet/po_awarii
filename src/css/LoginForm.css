@@ -84,6 +84,7 @@ body{
 
 .login-swap {
     text-align: center;
+    color: black;
 }
 
 @media screen and (max-width: 700px){

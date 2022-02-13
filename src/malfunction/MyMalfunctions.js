@@ -39,7 +39,7 @@ export default class MyMalfunctions extends Component {
         if(this.state.inWork.length === 0){
             return (
                 <div style={{display: "flex", flexDirection: "column", textAlign: "center"}}>
-                    <span>Nie posiadasz żadnych oczekujacych zgłoszeń</span>
+                    <span>Nie posiadasz żadnych aktywnych zgłoszeń</span>
                 </div>
             )
         }
@@ -74,7 +74,7 @@ export default class MyMalfunctions extends Component {
         let pending = [];
         let inWork = [];
         let ended = [];
-        axios.get("https://po-awarii.herokuapp.com/malfunctions/user/" + userId, {
+        axios.get(process.env.REACT_APP_SERVER + '/malfunctions/user/' + userId, {
             headers: {
                 'Authorization': 'Token ' + this.props.userdata.token
             }

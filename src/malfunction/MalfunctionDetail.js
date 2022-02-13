@@ -16,7 +16,7 @@ export default class MalfunctionDetail extends Component{
 
     componentDidMount = () => {
         const id = this.state.id;
-        axios.get('https://po-awarii.herokuapp.com/malfunctions/' + id + '/malfunction', {
+        axios.get(process.env.REACT_APP_SERVER + '/malfunctions/' + id + '/malfunction', {
             headers: {
                 'Authorization': 'Token ' + this.props.userdata.token
             }
@@ -51,7 +51,7 @@ export default class MalfunctionDetail extends Component{
 
     specIntr = () => {
         const malfunctionID = this.state.id;
-        axios.put("https://po-awarii.herokuapp.com/malfunctions/malfunction/" + malfunctionID + "/specialist/interested", {},{
+        axios.put(process.env.REACT_APP_SERVER + '/malfunctions/malfunction/' + malfunctionID + '/specialist/interested', {},{
             headers: {
                 'Authorization': 'Token ' + this.props.userdata.token
             }
