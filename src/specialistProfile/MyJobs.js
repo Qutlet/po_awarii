@@ -24,7 +24,7 @@ export default class MyJobs extends Component {
     componentDidMount() {
         const specId = this.props.userdata.specId;
         //PENDING
-        axios.get(process.env.REACT_APP_SERVER + '/malfunctions/specialist/" + specId + "?status=PENDING', {
+        axios.get(process.env.REACT_APP_SERVER + '/malfunctions/specialist/' + specId + '?status=PENDING', {
             headers: {
                 'Authorization': 'Token ' + this.props.userdata.token
             }
@@ -34,7 +34,7 @@ export default class MyJobs extends Component {
             })
         })
         //IN_WORK
-        axios.get(process.env.REACT_APP_SERVER + '/malfunctions/specialist/" + specId + "?status=IN_WORK', {
+        axios.get(process.env.REACT_APP_SERVER + '/malfunctions/specialist/' + specId + '?status=IN_WORK', {
             headers: {
                 'Authorization': 'Token ' + this.props.userdata.token
             }
@@ -44,7 +44,7 @@ export default class MyJobs extends Component {
             })
         })
         //ENDED
-        axios.get(process.env.REACT_APP_SERVER + '/malfunctions/specialist/" + specId + "?status=ENDED', {
+        axios.get(process.env.REACT_APP_SERVER + '/malfunctions/specialist/' + specId + '?status=ENDED', {
             headers: {
                 'Authorization': 'Token ' + this.props.userdata.token
             }
